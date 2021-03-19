@@ -5,11 +5,36 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "dayjs": "^1.10.4",
     "next": "10.0.8",
+    "polished": "^4.1.1",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "react-select": "^4.2.1",
+    "react-spring": "^8.0.27",
+    "react-tabs": "^3.2.1",
+    "styled-components": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.34",
+    "@types/react": "^17.0.3",
+    "@types/react-select": "^4.0.13",
+    "@types/styled-components": "^5.1.8",
+    "@typescript-eslint/eslint-plugin": "^4.17.0",
+    "@typescript-eslint/parser": "^4.17.0",
+    "babel-plugin-styled-components": "^1.12.0",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "prettier": "^2.2.1",
+    "typescript": "^4.2.3"
   }
 }
