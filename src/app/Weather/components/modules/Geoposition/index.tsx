@@ -1,18 +1,20 @@
 import styled from 'styled-components';
-import ChooseCityButton from 'app/Weather/components/elemets/Button';
+import Button from 'app/Weather/components/elemets/Button';
+import { verticalAligned } from 'app/common/styles/mixins';
 import MyGeopositionBtn from '../Buttons/MyGeoposition';
-import Hr from '../../elemets/Divider';
 
 export const StyledGeoposition = styled.div`
-    display: flex;
-    margin: 16px 0;
+    ${verticalAligned()}
 `;
 export const GeopositionTitle = styled.div`
     margin-right: auto;
     font-size: 24px;
 `;
+
+export const ChooseCityButtonContainer = styled.span``;
+
 export const GeopositionControl = styled.div`
-    ${ChooseCityButton}:first-child {
+    ${ChooseCityButtonContainer}:first-child {
         margin-right: 20px;
     }
 `;
@@ -26,11 +28,10 @@ export const Geoposition: React.FC<GeopositionProps> = ({ title }) => (
         <StyledGeoposition>
             <GeopositionTitle>{title}</GeopositionTitle>
             <GeopositionControl>
-                <MyGeopositionBtn />
-                <ChooseCityButton>Выбрать город</ChooseCityButton>
+                <ChooseCityButtonContainer><MyGeopositionBtn /></ChooseCityButtonContainer>
+                <ChooseCityButtonContainer><Button>Выбрать город</Button></ChooseCityButtonContainer>
             </GeopositionControl>
         </StyledGeoposition>
-        <Hr />
     </>
 );
 export default Geoposition;
