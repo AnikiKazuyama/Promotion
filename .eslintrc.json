@@ -34,6 +34,7 @@
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],
         "react/react-in-jsx-scope": "off",
+        "react/jsx-props-no-spreading": "off",
         "react/prop-types": "off",
         "require-jsdoc": [
             2,
@@ -55,7 +56,9 @@
                 "some": [ "nesting", "id"  ]
             }
         }],
-        "no-multi-spaces": "error"
+        "no-multi-spaces": "error",
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": ["error"]
     },
     "settings": {
         "import/extensions": [".js",".jsx",".ts",".tsx"],
