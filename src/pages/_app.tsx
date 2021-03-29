@@ -1,14 +1,15 @@
+import { PageLoadingProvider } from 'app/Weather/context/pageLoading';
 import { AppProps } from 'next/dist/next-server/lib/router/router';
 import Styles from 'styles';
 
 /**
  * The root component
  */
-function MyApp({ Component }: AppProps): JSX.Element {
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <>
             <Styles />
-            <Component />
+            <PageLoadingProvider><Component {...pageProps} /></PageLoadingProvider>
         </>
     );
 }
