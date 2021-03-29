@@ -1,6 +1,7 @@
 import { InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
 import { math } from 'polished';
+import { themeTransitioned } from 'app/common/styles/mixins';
 
 const Switch = styled.label`
     cursor: pointer;
@@ -17,7 +18,7 @@ const Slider = styled.span`
     width: ${sliderSize.width};
     height: ${sliderSize.height};
     border-radius: ${sliderSize.height};
-    background-color: #c6c6c6;
+    background-color: var(--colors-toggle-slider);
     margin: 0;
     padding: 0;
 
@@ -45,8 +46,10 @@ const HideInput = styled.input`
     position: absolute;
     appearance: none;
 
+    ${themeTransitioned()}
+
     &:checked +  ${Slider} {
-        background-color: #c6c6c6;
+        background-color: var(--colors-toggle-slider);
     }
 
     &:checked +  ${Slider}::before {

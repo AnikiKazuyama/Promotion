@@ -17,9 +17,7 @@ const styles: StylesConfig<any, false> = {
 const customTheme = (theme: Theme): Theme => ({
     ...theme,
     colors: {
-        ...theme.colors,
-        primary25: 'hotpink',
-        primary: 'black'
+        ...theme.colors
     }
 });
 

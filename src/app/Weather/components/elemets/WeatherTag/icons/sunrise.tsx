@@ -1,11 +1,11 @@
 export const Sunrise = () => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
         <defs>
-            <clipPath id="a">
+            <clipPath id="sunrise">
                 <rect y="7.5" width="64" height="32" fill="none" />
             </clipPath>
         </defs>
-        <g clipPath="url(#a)">
+        <g clipPath="url(#sunrise)">
             <g>
                 <path d="M32,30.36A8.64,8.64,0,1,1,23.36,39,8.66,8.66,0,0,1,32,30.36m0-3A11.64,11.64,0,1,0,43.64,39,11.64,11.64,0,0,0,32,27.36Z" fill="#f4a71d" />
                 <line x1="32" y1="22.71" x2="32" y2="16.5" fill="none" stroke="#f4a71d" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="3" />

@@ -1,15 +1,18 @@
+import { forwardRef } from 'react';
 import styled from 'styled-components';
 
 export const BaseButton = styled.button`
-    display: inline-flex;
-    align-items: center;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
     justify-content: center;
-    padding: 8px 16px;
-    background-color: white;
+    padding: 8px 12px;
+    background-color: var(--colors-active-background);
+    color: var(--colors-font-main);
     border: 1px solid #f0f0f0;
     border-radius: 5px;
-    min-width: 60px;
-    transition: 0.3s background-color;
+    min-width: 40px;
+    transition: 0.3s background-color, color 0.3s;
 
     &:hover {
         cursor: pointer;
@@ -26,4 +29,41 @@ export const BaseButton = styled.button`
         color: white;
     }
 `;
-export default BaseButton;
+
+const IconContainer = styled.span`
+    display: inline-flex;
+    vertical-align: inherit;
+`;
+
+const IconContainerStart = styled(IconContainer)`
+    margin-right: 12px;
+`;
+
+const IconContainerEnd = styled(IconContainer)`
+    margin-left: 12px;
+`;
+interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+    startIcon?: JSX.Element
+    endIcon?: JSX.Element
+    className?: string
+}
+
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
+    startIcon,
+    endIcon,
+    className,
+    children,
+    ...rest
+}, ref) => (
+    <BaseButton
+        ref={ref}
+        className={className}
+        {...rest}
+    >
+        {startIcon ? <IconContainerStart>{startIcon}</IconContainerStart> : null }
+        {children}
+        {endIcon ? <IconContainerEnd>{endIcon}</IconContainerEnd> : null }
+    </BaseButton>
+));
+
+export default Button;

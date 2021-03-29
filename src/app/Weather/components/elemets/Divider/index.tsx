@@ -1,9 +1,16 @@
+import { themeTransitioned } from 'app/common/styles/mixins';
 import styled from 'styled-components';
 
-export const Divider = styled.hr`
-    margin: 0;
+type DividerProps = {
+    gap?: string
+}
+
+export const Divider = styled.hr<DividerProps>`
+    margin: ${({ gap }) => gap || '0px'};
     height: 1px;
     border: none;
-    background-color: #e3e2e2;
+    background-color: var(--colors-divider);
+
+    ${themeTransitioned()}
 `;
 export default Divider;

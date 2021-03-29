@@ -1,21 +1,23 @@
 import styled from 'styled-components';
 
-type IconSizes = 'xs' | 's' | 'm' | 'l' | 'xl';
+type IconSizes = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl';
 
 type IconContainerProps = {
     size?: IconSizes;
 }
 
 const SIZES = {
-    xs: '12px',
-    s: '18px',
-    m: '24px',
+    xxs: '8px;',
+    xs: '16px',
+    s: '24px',
+    m: '36px',
     l: '48px',
     xl: '64px'
 };
 
 export const IconContainer = styled.div<IconContainerProps>`
     display: inline-block;
+    vertical-align: inherit;
     width: ${({ size }) => {
         if (!size) {
             return SIZES.m;

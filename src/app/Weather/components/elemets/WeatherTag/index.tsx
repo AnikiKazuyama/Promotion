@@ -1,3 +1,5 @@
+import { themeTransitioned } from 'app/common/styles/mixins';
+import { forwardRef } from 'react';
 import styled from 'styled-components';
 import IconContainer from '../IconContainer';
 import WeatherIcons from './icons';
@@ -7,10 +9,13 @@ type WeatherTag = {
     weatherCode: string
     temperature: number
     timeInText?: string
+    ref?: any
 }
 
 const Humidity = styled.div`
-    color: blue;
+    color: var(--colors-font-wet);
+    
+    ${themeTransitioned()}
 `;
 
 const TimePeriod = styled.div`
@@ -20,26 +25,28 @@ const TimePeriod = styled.div`
 `;
 
 const Temperature = styled.div`
-    color: #b4b4b4;
+    color: var(--colors-font-secondary);
     font-size: 12px;
+
+    ${themeTransitioned()}
 `;
 
-const StyledWeatherTag = styled.div`
+export const StyledWeatherTag = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
 `;
 
-export const WeatherTag: React.FC<WeatherTag> = ({
+export const WeatherTag = forwardRef<HTMLDivElement, WeatherTag>(({
     humidity,
     weatherCode,
     temperature,
     timeInText
-}) => {
+}, ref) => {
     const WeatherIcon = WeatherIcons[weatherCode];
-    console.log();
+
     return (
-        <StyledWeatherTag>
+        <StyledWeatherTag ref={ref}>
             {humidity ? <Humidity>{humidity}</Humidity> : null}
             <IconContainer size="l"><WeatherIcon /></IconContainer>
             {timeInText ? <TimePeriod>{timeInText}</TimePeriod> : null}
@@ -49,5 +56,5 @@ export const WeatherTag: React.FC<WeatherTag> = ({
             </Temperature>
         </StyledWeatherTag>
     );
-};
+});
 export default WeatherTag;
