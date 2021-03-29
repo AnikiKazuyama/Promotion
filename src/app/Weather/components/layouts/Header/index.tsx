@@ -1,5 +1,7 @@
+import { themeTransitioned, verticalAligned } from 'app/common/styles/mixins';
 import styled from 'styled-components';
-import Hr from '../../elemets/Divider';
+import Divider from '../../elemets/Divider';
+import Geoposition from '../../modules/Geoposition';
 import CitySearch from '../../modules/Inputs/CitySelect';
 import ThemeToggle from '../../modules/Inputs/ThemeToggle';
 import Wrapper from '../Wrapper';
@@ -11,15 +13,15 @@ import Wrapper from '../Wrapper';
 const StyledHeader = styled(Wrapper).attrs({
     as: 'header'
 })`
-    display: flex;
-    align-items: center;
+    ${verticalAligned()}
     padding-top: 20px;
     padding-bottom: 20px;
-    background-color: #fbfbfb;
+    background-color: var(--colors-header-background);
+    
+    ${themeTransitioned()}
 `;
 const TitleWLogo = styled.div`
-    display: flex;
-    align-items: center;
+    ${verticalAligned()}
     margin-right: 40px;
     cursor: default;
 `;
@@ -29,7 +31,7 @@ const Title = styled.div`
 `;
 const Logo = styled.div`
     padding: 4px 8px;
-    border: 3px solid #fdd84a;
+    border: 3px solid var(--colors-active-borders);
 `;
 const SearchBlock = styled.div`
     margin-right: 8px;
@@ -45,9 +47,10 @@ const CategoryItem = styled.li`
     opacity: 0.5;
     transition: opacity 0.2s;
     cursor: pointer;
-    
+    color: var(--colors-font-secondary);
+
     &:hover {
-        color: white;
+        color: var(--colors-font-main);
         opacity: 1;
     }
 `;
@@ -73,7 +76,11 @@ export const Header: React.FC = () => (
             </Categories>
             <ThemeToggle />
         </StyledHeader>
-        <Hr />
+        <Divider gap="0px 0px 24px 0px" />
+        <Wrapper>
+            <Geoposition title="Лондон" />
+            <Divider gap="24px 0px" />
+        </Wrapper>
     </>
 );
 

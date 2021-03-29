@@ -1,10 +1,9 @@
+import { verticalAligned } from 'app/common/styles/mixins';
 import styled from 'styled-components';
-import Hr from '../../elemets/Divider';
 import Wrapper from '../Wrapper';
 
 export const StyledFooter = styled.footer`
-    display: flex;
-    align-items: center;
+    ${verticalAligned()}
     margin-top: 20px;
     padding-bottom: 20px;
 `;
@@ -16,7 +15,6 @@ export const FooterLits = styled.ul`
 
 export const Footer = () => (
     <Wrapper>
-        <Hr />
         <StyledFooter>
             <FooterLits>
                 <li>Главная</li>
