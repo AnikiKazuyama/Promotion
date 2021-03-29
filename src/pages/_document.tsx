@@ -38,7 +38,7 @@ export default class MyDocument extends Document {
                 <Head>
                     <link href="/fonts/style.css" rel="stylesheet" />
                 </Head>
-                <body className="body">
+                <body className="body" data-theme="light">
                     <Main />
                     <NextScript />
                 </body>
