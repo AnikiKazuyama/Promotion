@@ -26,6 +26,7 @@
     "lodash": "^4.17.21",
     "mobx": "^6.1.8",
     "mobx-react-lite": "^3.2.0",
+    "mobx-utils": "^6.0.4",
     "next": "10.0.8",
     "polished": "^4.1.1",
     "react": "17.0.1",
@@ -35,7 +36,8 @@
     "react-tabs": "^3.2.1",
     "react-use": "^17.2.1",
     "styled-components": "^5.2.1",
-    "swr": "^0.5.4"
+    "swr": "^0.5.4",
+    "utility-types": "^3.10.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^10.0.9",

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Button from 'app/Weather/components/elemets/Button';
 import { verticalAligned } from 'app/common/styles/mixins';
 import MyGeopositionBtn from '../Buttons/MyGeoposition';
 
@@ -13,25 +12,14 @@ export const GeopositionTitle = styled.div`
 
 export const ChooseCityButtonContainer = styled.span``;
 
-export const GeopositionControl = styled.div`
-    ${ChooseCityButtonContainer}:first-child {
-        margin-right: 20px;
-    }
-`;
-
 export type GeopositionProps = {
     title: string
 }
 
 export const Geoposition: React.FC<GeopositionProps> = ({ title }) => (
-    <>
-        <StyledGeoposition>
-            <GeopositionTitle>{title}</GeopositionTitle>
-            <GeopositionControl>
-                <ChooseCityButtonContainer><MyGeopositionBtn /></ChooseCityButtonContainer>
-                <ChooseCityButtonContainer><Button>Выбрать город</Button></ChooseCityButtonContainer>
-            </GeopositionControl>
-        </StyledGeoposition>
-    </>
+    <StyledGeoposition>
+        <GeopositionTitle>{title}</GeopositionTitle>
+        <ChooseCityButtonContainer><MyGeopositionBtn /></ChooseCityButtonContainer>
+    </StyledGeoposition>
 );
 export default Geoposition;

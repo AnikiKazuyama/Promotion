@@ -18,7 +18,7 @@ const globalStyles = css`
     // Not active card background-color
     --color-light-gray: #f9f9f9;
     // Not primary font color
-    --color-deep-gray: #cccccc;
+    --color-deep-gray: #959595;
     // Toggle slider background
     --color-dark-gray: #c9c9c9;
     // Wet font color and clouds
@@ -103,6 +103,10 @@ ul {
 }
 
 svg {
+    display: block;
+}
+
+img { 
     display: block;
 }
 `;

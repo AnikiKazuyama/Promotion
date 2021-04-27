@@ -7,10 +7,11 @@ export const useFade = (condition: AnyType, config?: SpringConfig) => {
             duration: 800,
             ...config
         },
-        from: { opacity: 0, height: 'auto' },
-        enter: { opacity: 1, height: 'auto' },
-        leave: { opacity: 0, height: 0 }
+        from: { opacity: 0, height: 'auto', transform: 'scale(0) translateX(100%)' },
+        enter: { opacity: 1, height: 'auto', transform: 'scale(1) translateX(0px)' },
+        leave: { opacity: 0, height: 0, transform: 'scale(0) translateX(-100%)' }
     });
+
     return transitions;
 };
 

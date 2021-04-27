@@ -1,4 +1,6 @@
 import { themeTransitioned, verticalAligned } from 'app/common/styles/mixins';
+import { useLocation } from 'app/Weather/context/location';
+import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
 import Divider from '../../elemets/Divider';
 import Geoposition from '../../modules/Geoposition';
@@ -59,29 +61,33 @@ const CategoryItem = styled.li`
  * Header contains title, logo of the app
  * city search input and theme toggle
  */
-export const Header: React.FC = () => (
-    <>
-        <StyledHeader>
-            <TitleWLogo>
-                <Title>Aniki</Title>
-                <Logo>Weather</Logo>
-            </TitleWLogo>
-            <SearchBlock>
-                <CitySearch />
-            </SearchBlock>
-            <Categories>
-                <CategoryItem>На 10 дней</CategoryItem>
-                <CategoryItem>На месяц</CategoryItem>
-                <CategoryItem>На карте</CategoryItem>
-            </Categories>
-            <ThemeToggle />
-        </StyledHeader>
-        <Divider gap="0px 0px 24px 0px" />
-        <Wrapper>
-            <Geoposition title="Лондон" />
-            <Divider gap="24px 0px" />
-        </Wrapper>
-    </>
-);
+export const Header = observer(() => {
+    const locationStore = useLocation();
+
+    return (
+        <>
+            <StyledHeader>
+                <TitleWLogo>
+                    <Title>Aniki</Title>
+                    <Logo>Weather</Logo>
+                </TitleWLogo>
+                <SearchBlock>
+                    <CitySearch />
+                </SearchBlock>
+                <Categories>
+                    <CategoryItem>На 10 дней</CategoryItem>
+                    <CategoryItem>На месяц</CategoryItem>
+                    <CategoryItem>На карте</CategoryItem>
+                </Categories>
+                <ThemeToggle />
+            </StyledHeader>
+            <Divider gap="0px 0px 24px 0px" />
+            <Wrapper>
+                <Geoposition title={locationStore.getLocation().city} />
+                <Divider gap="24px 0px" />
+            </Wrapper>
+        </>
+    );
+});
 
 export default Header;

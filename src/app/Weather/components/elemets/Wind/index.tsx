@@ -3,27 +3,37 @@ import styled from 'styled-components';
 import Button from '../Button';
 
 type WindProps = {
-    deg: number,
+    deg: number
     power: number
+    vertical?: boolean
+    className?: string
 }
-
-const StyledWind = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-`;
 
 const StyledWindDirection = styled(Button)`
     background-color: transparent;
     border-radius: 16px;
-    margin-top: 12px;
+`;
+
+const StyledWind = styled.div<{vertical?: boolean}>`
+    display: flex;
+    flex-direction: ${({ vertical }) => (vertical ? 'column' : 'row')};
+    align-items: ${({ vertical }) => (vertical ? 'initial' : 'center')};
+    justify-content: center;
+    ${({ vertical }) => (vertical ? '' : 'margin: 0 8px;')};
+    
+    ${StyledWindDirection} {
+        ${({ vertical }) => (vertical ? '' : 'margin: 0 8px;')};
+        margin-top: ${({ vertical }) => (vertical ? '12px' : '0px')}
+    }
 `;
 
 const Wind: React.FC<WindProps> = ({
     deg,
-    power
+    power,
+    vertical,
+    className
 }) => (
-    <StyledWind>
+    <StyledWind vertical={vertical} className={className}>
         <span>
             {power}
             {' '}

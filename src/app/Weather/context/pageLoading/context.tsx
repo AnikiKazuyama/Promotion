@@ -2,7 +2,7 @@ import { Router } from 'next/router';
 import { createContext, useContext, useEffect } from 'react';
 import pageLoadingStore, { PageLoadingStore } from './store';
 
-const PageLoadingContext = createContext<PageLoadingStore>(null);
+const PageLoadingContext = createContext<PageLoadingStore>();
 
 const PageLoadingProvider: React.FC = ({ children }) => {
     useEffect(() => {

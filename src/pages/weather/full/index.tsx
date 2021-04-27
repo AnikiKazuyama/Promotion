@@ -11,7 +11,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     if (addressLookup && addressLookup.address && geoLookup) {
         return {
             redirect: {
-                destination: `/weather/${geoLookup.city.toLowerCase().replace(' ', '-')}`,
+                destination: `/weather/full/${geoLookup.city.toLowerCase().replace(' ', '-')}`,
                 permanent: true
             }
         };
@@ -19,7 +19,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
     return {
         redirect: {
-            destination: '/weather/san-antonio',
+            destination: '/weather/full/san-antonio',
             permanent: true
         }
     };

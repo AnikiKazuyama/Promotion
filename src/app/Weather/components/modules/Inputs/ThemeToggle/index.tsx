@@ -1,5 +1,6 @@
 import Toggle from 'app/Weather/components/elemets/Toggle';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useLocalStorage } from 'react-use';
 import styled from 'styled-components';
 
 const StyledToggle = styled(Toggle)`
@@ -7,21 +8,21 @@ const StyledToggle = styled(Toggle)`
 `;
 
 const ThemeToggle = () => {
-    const [theme, setTheme] = useState('light');
-    const nextTheme = theme === 'light' ? 'dark' : 'light';
+    const [savedTheme, setSavedTheme] = useLocalStorage('theme', 'light');
+    const nextTheme = savedTheme === 'light' ? 'dark' : 'light';
 
     const handleChange = () => {
-        setTheme(nextTheme);
+        setSavedTheme(nextTheme);
     };
 
     useEffect(() => {
-        document.body.dataset.theme = theme;
-    }, [theme]);
+        document.body.dataset.theme = savedTheme;
+    }, [savedTheme]);
 
     return (
         <>
             <span>White</span>
-            <StyledToggle onChange={handleChange} />
+            <StyledToggle checked={savedTheme === 'dark'} onChange={handleChange} />
             <span>Black</span>
         </>
     );
