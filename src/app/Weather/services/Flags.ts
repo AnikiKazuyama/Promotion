@@ -1,15 +1,11 @@
-type FlagIconStyle = 'flat' | 'shiny'
 enum FlagIconSizes {
-    XS = '16',
-    S = '24',
-    L = '32',
-    XL = '48',
-    XXL = '64'
+    S = 'w20',
+    XL = 'w40'
 }
 
-const FLAG_ICON_URL = 'https://www.countryflags.io/:country_code/:style/:size.png';
-const getFlagIcon = (countyCode: string, style: FlagIconStyle = 'flat', size: FlagIconSizes = FlagIconSizes.S) => (
-    FLAG_ICON_URL.replace(':country_code', countyCode).replace(':style', style).replace(':size', size)
+const FLAG_ICON_URL = 'https://flagcdn.com/:size/:country_code.png';
+const getFlagIcon = (countyCode: string, size: FlagIconSizes = FlagIconSizes.XL) => (
+    FLAG_ICON_URL.replace(':country_code', countyCode.toLowerCase()).replace(':size', size)
 );
 
 export default getFlagIcon;

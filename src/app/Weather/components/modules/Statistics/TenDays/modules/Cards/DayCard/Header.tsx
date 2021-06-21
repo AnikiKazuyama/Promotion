@@ -1,6 +1,7 @@
 import { themeTransitioned } from 'app/common/styles/mixins';
 import { useLocation } from 'app/Weather/context/location';
 import { observer } from 'mobx-react-lite';
+import { useTranslation } from 'react-i18next';
 import { animated } from 'react-spring';
 import styled from 'styled-components';
 
@@ -21,6 +22,14 @@ export interface DayCurrentHeaderProps {
     minTemperature: number
 }
 
+const TitleToday = styled.span`
+    margin-right: 4px;
+`;
+
+const MaxTemperatureSeporator = styled.span`
+    margin: 0 4px;
+`;
+
 const Header: React.FC<DayCurrentHeaderProps> = observer(({
     today,
     time,
@@ -28,11 +37,17 @@ const Header: React.FC<DayCurrentHeaderProps> = observer(({
     minTemperature
 }) => {
     const locationStore = useLocation();
-
+    const { t } = useTranslation();
     return (
         <Title>
             <div>
-                {today ? 'Now:' : null}
+                {today ? (
+                    <TitleToday>
+                        {t('time now')}
+                        :
+                    </TitleToday>
+                ) : null}
+                {' '}
                 {
                     today
                         ? locationStore.getTimeInLocation().format('HH:mm')
@@ -42,7 +57,8 @@ const Header: React.FC<DayCurrentHeaderProps> = observer(({
             <div>
                 {maxTemperature}
                 {' '}
-                \
+                <MaxTemperatureSeporator>\</MaxTemperatureSeporator>
+                {' '}
                 <MinTemperature>{minTemperature}</MinTemperature>
             </div>
         </Title>

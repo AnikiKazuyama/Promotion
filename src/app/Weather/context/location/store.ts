@@ -1,9 +1,10 @@
 import dayjs, { ConfigType } from 'dayjs';
 import { isNumber } from 'lodash';
 import {
-    action, computed, makeObservable, observable
+    action, makeObservable, observable
 } from 'mobx';
 import { enableStaticRendering } from 'mobx-react-lite';
+import { useEffect } from 'react';
 
 export type Location = {
     city: string,
@@ -45,32 +46,19 @@ export class LocationsStore {
 
 let store: LocationsStore;
 const initializeStore = (initialData: Location) => {
-    if (typeof window === 'undefined') {
-        const privateStore = new LocationsStore();
-        privateStore.setLocation(initialData);
-        return privateStore;
-    }
-    if (store === undefined) {
-        store = new LocationsStore();
-        store.setLocation(initialData);
-    }
-    if (store) {
-        store.setLocation(initialData);
-    }
+    const privateStore = store || new LocationsStore();
+    useEffect(() => {
+        if (initialData) {
+            privateStore.setLocation(initialData);
+        }
+    }, [initialData, privateStore]);
 
-    return store;
+    // For SSG and SSR always create a new store
+    if (typeof window === 'undefined') return privateStore;
+    // Create the store once in the client
+    if (!store) store = privateStore;
 
-    // const privateStore = store || new LocationsStore();
-    // if (initialData) {
-    //     privateStore.setLocation(initialData);
-    // }
-
-    // // For SSG and SSR always create a new store
-    // if (typeof window === 'undefined') return privateStore;
-    // // Create the store once in the client
-    // if (!store) store = privateStore;
-
-    // return privateStore;
+    return privateStore;
 };
 
 export default initializeStore;

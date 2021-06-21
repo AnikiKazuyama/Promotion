@@ -6,13 +6,14 @@ import { GetServerSideProps } from 'next';
 import { Location } from 'app/Weather/context/location/store';
 import mapDtoToUiData from './dtoMapperToUi';
 
-const getProps = async (coords: Coord) => {
+const getProps = async (coords: Coord, lang?: string) => {
     const result = await Promise.all([
-        getCurrentWeather({ coords }),
-        getWeatherForecast({ coords }),
+        getCurrentWeather({ coords, lang }),
+        getWeatherForecast({ coords, lang }),
         getOneCallWeather({
             coords,
-            exclude: ['current', 'minutely', 'alerts']
+            exclude: ['current', 'minutely', 'alerts'],
+            lang
         })]);
 
     const currentPosition: Location = {
@@ -29,7 +30,8 @@ const getProps = async (coords: Coord) => {
 };
 
 const getServerSideProps: GetServerSideProps = async ({
-    query
+    query,
+    locale
 }) => {
     const cityQueryParam = query.city as string;
     const listOfCitySuggestions = await findCityByQuery({ q: cityQueryParam.replace(/-/g, ' ') });
@@ -45,7 +47,7 @@ const getServerSideProps: GetServerSideProps = async ({
         const props = await getProps({
             lat: city.coord.lat,
             lon: city.coord.lon
-        });
+        }, locale);
         return ({ props });
     }
 

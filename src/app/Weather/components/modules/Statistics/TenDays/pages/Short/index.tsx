@@ -6,18 +6,19 @@ import RightChevron from 'app/Weather/components/elemets/Icons/RightChevron';
 import CloudyLoader from 'app/Weather/components/elemets/Loaders/Cloudy';
 import { usePageLoading } from 'app/Weather/context/pageLoading';
 import { observer } from 'mobx-react-lite';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { HourForecastItem, ShortDayStatistic, Wind } from '../../../types';
 import AnimatedDayCard from '../../modules/Cards/AnimatedCard';
 
 const StyledDaysListContainer = styled.div`
     position: relative;
+    margin-top: 80px;
 `;
 
 const StyledDaysListController = styled.div`
     position: absolute;
-    top: 100px;
+    top: 0px;
     right: 20px;
     z-index: 1;
 `;
@@ -33,7 +34,6 @@ const StyledDaysList = styled.div`
     box-sizing: content-box;
     overflow: hidden;
     align-items: center;
-    padding: 40px 0px;
     padding-bottom: 120px;
     margin-bottom: -120px;
 
@@ -70,7 +70,7 @@ export type DetailsDayListProps = {
 const DaysList = observer<DetailsDayListProps>(({ weatherList }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const pageLoadingStore = usePageLoading();
-
+    const currentElement = useRef<HTMLDivElement | null>(null);
     const move = (direction: string, count: number) => {
         if (direction === 'left' && currentIndex === 0) {
             return;
@@ -87,7 +87,8 @@ const DaysList = observer<DetailsDayListProps>(({ weatherList }) => {
 
         setCurrentIndex(currentIndex + count);
     };
-    const moveTo = `-${currentIndex * 100}%`;
+
+    const moveTo = currentElement.current !== null ? `-${currentIndex * currentElement.current.offsetWidth}px` : '0px';
 
     return pageLoadingStore.isLoading
         ? <CloudyLoader />
@@ -101,7 +102,13 @@ const DaysList = observer<DetailsDayListProps>(({ weatherList }) => {
                 </StyledDaysListController>
                 <StyledDaysList>
                     {weatherList.map((weatherItem, index) => (
-                        <DaylistItem moveTo={moveTo} key={index}>
+                        <DaylistItem
+                            moveTo={moveTo}
+                            key={index}
+                            ref={(element) => {
+                                if (currentIndex === index) currentElement.current = element;
+                            }}
+                        >
                             <AnimatedDayCard
                                 dt={weatherItem.dt}
                                 weather={weatherItem.weather}

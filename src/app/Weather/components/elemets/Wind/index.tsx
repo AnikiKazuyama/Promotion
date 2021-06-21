@@ -9,7 +9,7 @@ type WindProps = {
     className?: string
 }
 
-const StyledWindDirection = styled(Button)`
+export const StyledWindDirection = styled(Button)`
     background-color: transparent;
     border-radius: 16px;
 `;

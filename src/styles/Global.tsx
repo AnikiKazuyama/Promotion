@@ -109,6 +109,13 @@ svg {
 img { 
     display: block;
 }
+
+.transparent-marker {
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    z-index: -1;
+}
 `;
 
 export default globalStyles;

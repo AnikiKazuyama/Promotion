@@ -3,7 +3,7 @@ import {
 } from 'react';
 import initializeLocationStore, { LocationsStore, Location } from './store';
 
-const LocationContext = createContext<LocationsStore>();
+const LocationContext = createContext<LocationsStore | undefined>(undefined);
 
 const LocationProvider: React.FC<{initialState: Location}> = ({
     children,

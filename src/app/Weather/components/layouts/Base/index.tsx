@@ -19,7 +19,7 @@ export const BaseLayout: React.FC = ({ children }) => (
     <StyledBaseLayout>
         <Header />
         <Main>{children}</Main>
-        <Divider />
+        <Divider gap="24px 0" />
         <Footer />
     </StyledBaseLayout>
 );

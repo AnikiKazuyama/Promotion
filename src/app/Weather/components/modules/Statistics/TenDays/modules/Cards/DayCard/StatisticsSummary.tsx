@@ -5,7 +5,7 @@ import {
 } from 'app/Weather/components/elemets/WeatherTag/icons';
 import { animated } from 'react-spring';
 import styled from 'styled-components';
-import WindComponent from 'app/Weather/components/elemets/Wind';
+import WindComponent, { StyledWindDirection } from 'app/Weather/components/elemets/Wind';
 import { useLocation } from 'app/Weather/context/location';
 import { observer } from 'mobx-react-lite';
 import SunGraph from '../../SunGraph';
@@ -40,10 +40,16 @@ export const Statistics = styled.div`
 
 export const StatisticsItem = styled.div`
     ${verticalAligned()}
-
+    
     margin-bottom: 12px;
+
     &:last-child {
         margin-bottom: 0px;
+    }
+
+    ${StyledWindDirection} {
+        cursor: initial;
+        outline: none;
     }
 `;
 

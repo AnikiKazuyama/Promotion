@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const BaseButton = styled.button`
+export const ButtonStyle = css`
     display: inline-block;
     text-align: center;
     vertical-align: middle;
@@ -30,6 +30,10 @@ export const BaseButton = styled.button`
     }
 `;
 
+export const BaseButton = styled.button`
+    ${ButtonStyle}
+`;
+
 const IconContainer = styled.span`
     display: inline-flex;
     vertical-align: inherit;
@@ -42,10 +46,11 @@ const IconContainerStart = styled(IconContainer)`
 const IconContainerEnd = styled(IconContainer)`
     margin-left: 12px;
 `;
-interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
     startIcon?: JSX.Element
     endIcon?: JSX.Element
     className?: string
+    name?: string
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({

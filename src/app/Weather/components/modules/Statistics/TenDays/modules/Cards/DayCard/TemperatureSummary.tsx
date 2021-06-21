@@ -15,15 +15,15 @@ export const WeatherWithIcon = styled.div`
 `;
 
 export const CurrentTemperature = styled.span`
-    margin-right: 12px;
+    margin: 0 auto;
     font-size: 82px;
     font-weight: 100;
+    text-align: center;
 `;
 
 export const DaySummaryWeather = styled.div`
     ${verticalAligned()}
     justify-content: flex-start;
-    padding: 0 5%;
 
     & > ${StyledWeatherTag} {
         margin: 0 12px;
@@ -62,7 +62,7 @@ const TemperatureSummary: React.FC<TemperatureSummaryProps> = ({
             </SmallSummaryWeather>
             <DaySummaryWeather>
                 <CurrentTemperature>
-                    {currentTemperature}
+                    {currentTemperature.toFixed()}
                     °
                 </CurrentTemperature>
 

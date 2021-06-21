@@ -12,7 +12,6 @@ import styled from 'styled-components';
 import Wind from 'app/Weather/components/elemets/Wind';
 import { useLocation } from 'app/Weather/context/location';
 import { minBy } from 'lodash';
-import { useWindowSize } from 'react-use';
 import { observer } from 'mobx-react-lite';
 import { HourForecastItem } from '../../../types';
 
@@ -101,7 +100,7 @@ const Chart: React.FC<ChartProps> = observer(({
     const useLocationStore = useLocation();
 
     return (
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', minWidth: 540 }}>
             <svg width="100%" height={height}>
                 <LinearGradient
                     id="area-gradient"

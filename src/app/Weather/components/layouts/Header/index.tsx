@@ -75,8 +75,7 @@ export const Header = observer(() => {
                     <CitySearch />
                 </SearchBlock>
                 <Categories>
-                    <CategoryItem>На 10 дней</CategoryItem>
-                    <CategoryItem>На месяц</CategoryItem>
+                    <CategoryItem>На 5 дней</CategoryItem>
                     <CategoryItem>На карте</CategoryItem>
                 </Categories>
                 <ThemeToggle />

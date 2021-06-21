@@ -1,4 +1,4 @@
-import { Required } from 'utility-types';
+import i18n from 'utils/translation';
 import { CurrentWeatherRequestParams, CurrentWeatherResponse } from './types/currentWeather';
 import { FindCityByQueryParams, FindCityByQueryResponse, FindCityByCoordsParams } from './types/findCityByQuery';
 import { ForecastWeatherResponse, ForecastWeatherRequestParams } from './types/forecastWeather';
