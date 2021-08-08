@@ -1,12 +1,11 @@
-import CloudyLoader from 'app/Weather/components/elemets/Loaders/Cloudy';
 import { BlurBgPaper } from 'app/Weather/components/elemets/Paper';
-import { usePageLoading } from 'app/Weather/context/pageLoading';
 import { observer } from 'mobx-react-lite';
 import { useTransition, animated } from 'react-spring';
 import styled from 'styled-components';
 import { device, size } from 'styles/MediaSizes';
 import { WeatherCardProps } from '../../../types';
 import DayCard from '../../modules/Cards/DayCard';
+import StaticSwitcher from '../../modules/StatickSwitcher';
 import Chart from './Chart';
 
 const FullContainer = styled(animated(BlurBgPaper))`
@@ -48,19 +47,20 @@ const DetailsDaysList = observer<DetailsDayListProps>(({ weatherList }) => {
         }
     });
 
-    const pageLoadingStore = usePageLoading();
-
-    return pageLoadingStore.isLoading ? <CloudyLoader /> : (
-        transiotions((styles) => (
-            weatherList.map((dayliWeather, index) => (
-                <FullContainer key={`${dayliWeather.dt}`} style={styles}>
-                    <DayCard today={index === 0} {...dayliWeather} />
-                    <LocalDivider />
-                    <ChartContainer>
-                        <Chart hourlyDayPeriods={dayliWeather.hourlyDayPeriods} />
-                    </ChartContainer>
-                </FullContainer>
-            ))))
+    return (
+        <>
+            <StaticSwitcher />
+            {transiotions((styles) => (
+                weatherList.map((dayliWeather, index) => (
+                    <FullContainer key={`${dayliWeather.dt}`} style={styles}>
+                        <DayCard today={index === 0} weatherStat={dayliWeather} />
+                        <LocalDivider />
+                        <ChartContainer>
+                            <Chart hourlyDayPeriods={dayliWeather.hourlyDayPeriods} />
+                        </ChartContainer>
+                    </FullContainer>
+                ))))}
+        </>
     );
 });
 

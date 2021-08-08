@@ -1,7 +1,7 @@
-import { WeatherElement } from 'app/Weather/services/types/common';
+import { WeatherElement, WeatherIconsId } from 'app/Weather/services/types/common';
 
 export type ShortDayStatistic = {
-    weatherCode: string
+    weatherCode: WeatherIconsId
     timePeriod: string
     temperature: number
     humidity?: number
@@ -33,7 +33,7 @@ export type WeatherCardProps = {
     sunrise: number
     sunset: number
     weather: string
-    weatherCode: string
+    weatherCode: WeatherIconsId
     wind: Wind
     hourlyDayPeriods: Array<HourForecastItem>
 }

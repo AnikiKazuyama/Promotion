@@ -7,7 +7,6 @@ const useChangeTranslation = () => {
     const { locale } = useRouter();
 
     useEffect(() => {
-        console.log(locale);
         i18n.changeLanguage(locale);
     }, [i18n, locale]);
 };

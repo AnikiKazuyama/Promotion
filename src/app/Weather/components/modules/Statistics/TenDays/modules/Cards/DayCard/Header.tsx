@@ -1,4 +1,5 @@
 import { themeTransitioned } from 'app/common/styles/mixins';
+import { AnyType } from 'app/common/types';
 import { useLocation } from 'app/Weather/context/location';
 import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'react-i18next';
@@ -19,7 +20,8 @@ export interface DayCurrentHeaderProps {
     today: boolean,
     time: number,
     maxTemperature: number,
-    minTemperature: number
+    minTemperature: number,
+    style?: AnyType
 }
 
 const TitleToday = styled.span`
@@ -34,12 +36,13 @@ const Header: React.FC<DayCurrentHeaderProps> = observer(({
     today,
     time,
     maxTemperature,
-    minTemperature
+    minTemperature,
+    style
 }) => {
     const locationStore = useLocation();
     const { t } = useTranslation();
     return (
-        <Title>
+        <Title style={style}>
             <div>
                 {today ? (
                     <TitleToday>

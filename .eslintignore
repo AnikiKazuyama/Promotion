@@ -3,3 +3,4 @@ node_modules
 next.config.js
 coverage
 *.css
+next-env.d.ts

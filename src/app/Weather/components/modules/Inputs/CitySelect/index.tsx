@@ -12,6 +12,7 @@ import getFlagIcon from 'app/Weather/services/Flags';
 import styled from 'styled-components';
 import { CitySuggest } from 'app/Weather/services/types/findCityByQuery';
 import pushToCity from 'app/Weather/utils/router';
+import { useTranslation } from 'react-i18next';
 
 type OptionType = CitySuggest;
 type AsynSelectType = ASyncProps<OptionType, false>
@@ -66,10 +67,11 @@ const debouncedLoadOptions = debounce(loadOptions, 300);
 
 export const CitySelect = () => {
     const router = useRouter();
+    const { t } = useTranslation();
 
     const props: AsynSelectType = {
         instanceId: 'city-select-2',
-        placeholder: 'Search by city',
+        placeholder: t('search by city'),
         components: CustomComponents,
         onChange: (option) => {
             if (option === null) return;

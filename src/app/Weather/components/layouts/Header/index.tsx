@@ -2,11 +2,15 @@ import { themeTransitioned, verticalAligned } from 'app/common/styles/mixins';
 import { useLocation } from 'app/Weather/context/location';
 import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 import Divider from '../../elemets/Divider';
 import Geoposition from '../../modules/Geoposition';
 import CitySearch from '../../modules/Inputs/CitySelect';
 import ThemeToggle from '../../modules/Inputs/ThemeToggle';
 import Wrapper from '../Wrapper';
+import ActiveLink from '../../elemets/Link';
 
 /**
  * Left part of header
@@ -15,17 +19,15 @@ import Wrapper from '../Wrapper';
 const StyledHeader = styled(Wrapper).attrs({
     as: 'header'
 })`
-    ${verticalAligned()}
-    padding-top: 20px;
-    padding-bottom: 20px;
-    background-color: var(--colors-header-background);
-    
+    ${verticalAligned()}    
     ${themeTransitioned()}
+
+    background-color: var(--colors-header-background);
 `;
 const TitleWLogo = styled.div`
     ${verticalAligned()}
     margin-right: 40px;
-    cursor: default;
+    cursor: pointer;
 `;
 const Title = styled.div`
     margin-right: 8px;
@@ -40,16 +42,32 @@ const SearchBlock = styled.div`
 `;
 const Categories = styled.ul`
     display: flex;
-    margin-right: auto;
+    flex-grow: 1;
+    justify-content: space-evenly;
 `;
-const CategoryItem = styled.li`
-    padding: 0;
+const CategoryItem = styled.li<{isActive?: boolean}>`
+    position: relative;
+    padding: 36px;
     margin: 0 4px;
     text-transform: uppercase;
-    opacity: 0.5;
     transition: opacity 0.2s;
     cursor: pointer;
-    color: var(--colors-font-secondary);
+    font-weight: 600;
+
+    ${({ isActive }) => ({
+        opacity: isActive ? 1 : 0.5,
+        color: isActive ? 'var(--colors-font-main)' : 'var(--colors-font-secondary)'
+    })}
+
+    &:after {
+        content: '';
+        display: ${({ isActive }) => (isActive ? 'block' : 'none')};
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        left: 0px;
+        border-bottom: 3px solid var(--colors-active-borders);
+    }
 
     &:hover {
         color: var(--colors-font-main);
@@ -63,20 +81,24 @@ const CategoryItem = styled.li`
  */
 export const Header = observer(() => {
     const locationStore = useLocation();
+    const { query } = useRouter();
+    const { t } = useTranslation();
 
     return (
         <>
             <StyledHeader>
-                <TitleWLogo>
-                    <Title>Aniki</Title>
-                    <Logo>Weather</Logo>
-                </TitleWLogo>
+                <Link href="/weather">
+                    <TitleWLogo>
+                        <Title>Aniki</Title>
+                        <Logo>Weather</Logo>
+                    </TitleWLogo>
+                </Link>
                 <SearchBlock>
                     <CitySearch />
                 </SearchBlock>
                 <Categories>
-                    <CategoryItem>На 5 дней</CategoryItem>
-                    <CategoryItem>На карте</CategoryItem>
+                    <ActiveLink href={`/weather/${query.city}`}><CategoryItem>{t('for number of days', { count: 5 })}</CategoryItem></ActiveLink>
+                    <ActiveLink href={`/weather/map/${query.city}`}><CategoryItem>{t('on map')}</CategoryItem></ActiveLink>
                 </Categories>
                 <ThemeToggle />
             </StyledHeader>

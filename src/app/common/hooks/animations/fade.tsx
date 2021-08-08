@@ -1,3 +1,4 @@
+import React from 'react';
 import { AnyType } from 'app/common/types';
 import { SpringConfig, useTransition } from 'react-spring';
 
@@ -12,7 +13,20 @@ export const useFade = (condition: AnyType, config?: SpringConfig) => {
         leave: { opacity: 0, height: 0, transform: 'scale(0) translateX(-100%)' }
     });
 
-    return transitions;
+    return (
+        TrulyComponent: React.ReactElement,
+        FalsyComponent?: React.ReactElement
+    ) => transitions((styles, item) => {
+        if (FalsyComponent) {
+            return (item ? (
+                React.cloneElement(TrulyComponent, { style: styles })
+            ) : (
+                React.cloneElement(FalsyComponent, { style: styles })
+            ));
+        }
+
+        return item && React.cloneElement(TrulyComponent, { style: styles });
+    });
 };
 
 export const SomeOtherAnimation = () => null;

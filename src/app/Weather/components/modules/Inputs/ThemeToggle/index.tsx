@@ -1,5 +1,6 @@
 import Toggle from 'app/Weather/components/elemets/Toggle';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLocalStorage } from 'react-use';
 import styled from 'styled-components';
 
@@ -8,6 +9,7 @@ const StyledToggle = styled(Toggle)`
 `;
 
 const ThemeToggle = () => {
+    const { t } = useTranslation();
     const [savedTheme, setSavedTheme] = useLocalStorage('theme', 'light');
     const nextTheme = savedTheme === 'light' ? 'dark' : 'light';
 
@@ -21,9 +23,9 @@ const ThemeToggle = () => {
 
     return (
         <>
-            <span>White</span>
+            <span>{t('white')}</span>
             <StyledToggle checked={savedTheme === 'dark'} onChange={handleChange} />
-            <span>Black</span>
+            <span>{t('black')}</span>
         </>
     );
 };

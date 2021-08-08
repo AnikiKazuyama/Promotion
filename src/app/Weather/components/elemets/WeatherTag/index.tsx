@@ -1,4 +1,6 @@
 import { themeTransitioned } from 'app/common/styles/mixins';
+import { AnyType } from 'app/common/types';
+import { WeatherIconsId } from 'app/Weather/services/types/common';
 import { forwardRef } from 'react';
 import styled from 'styled-components';
 import IconContainer from '../IconContainer';
@@ -6,10 +8,10 @@ import WeatherIcons from './icons';
 
 type WeatherTag = {
     humidity?: string
-    weatherCode: string
+    weatherCode: WeatherIconsId
     temperature: number
     timeInText?: string
-    ref?: any
+    ref?: AnyType
 }
 
 const Humidity = styled.div`

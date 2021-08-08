@@ -2,6 +2,7 @@ import Divider from 'app/Weather/components/elemets/Divider';
 import styled from 'styled-components';
 import { observer } from 'mobx-react-lite';
 import { ConfigType } from 'dayjs';
+import { WeatherIconsId } from 'app/Weather/services/types/common';
 import { ShortDayStatistic } from '../../../../types';
 import Header from './Header';
 import Main from './Main';
@@ -10,7 +11,8 @@ import Footer from './Footer';
 export type DayCardMiniProps = {
     date: ConfigType,
     currentDayPeriods: Array<ShortDayStatistic>,
-    weatherCode: string,
+    weatherCode: WeatherIconsId,
+    weather: string,
     className?: string
 }
 
@@ -25,11 +27,12 @@ export const DayCardMini: React.FC<DayCardMiniProps> = observer(({
     date,
     currentDayPeriods,
     weatherCode,
+    weather,
     className
 }) => (
     <DayCardMiniContainer className={className}>
         <Header date={date} />
-        <Main weatherCode={weatherCode} />
+        <Main weatherCode={weatherCode} weather={weather} />
         <Divider gap="12px 0px" />
         <Footer currentDayPeriods={currentDayPeriods} />
     </DayCardMiniContainer>

@@ -3,17 +3,16 @@ import StyeldButtonGroup from 'app/Weather/components/elemets/ButtonGroup';
 import IconContainer from 'app/Weather/components/elemets/IconContainer';
 import LeftChevron from 'app/Weather/components/elemets/Icons/LeftChevron';
 import RightChevron from 'app/Weather/components/elemets/Icons/RightChevron';
-import CloudyLoader from 'app/Weather/components/elemets/Loaders/Cloudy';
-import { usePageLoading } from 'app/Weather/context/pageLoading';
-import { observer } from 'mobx-react-lite';
+import { WeatherIconsId } from 'app/Weather/services/types/common';
 import { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { HourForecastItem, ShortDayStatistic, Wind } from '../../../types';
 import AnimatedDayCard from '../../modules/Cards/AnimatedCard';
+import StaticSwitcher from '../../modules/StatickSwitcher';
 
 const StyledDaysListContainer = styled.div`
     position: relative;
-    margin-top: 80px;
+    margin-top: 40px;
 `;
 
 const StyledDaysListController = styled.div`
@@ -55,7 +54,7 @@ export type DataCardProps = {
     sunrise: number
     sunset: number
     weather: string
-    weatherCode: string
+    weatherCode: WeatherIconsId
     wind: Wind
 }
 
@@ -67,9 +66,8 @@ export type DetailsDayListProps = {
     weatherList: Array<DetailsDayProps>
 }
 
-const DaysList = observer<DetailsDayListProps>(({ weatherList }) => {
+const DaysList: React.FC<DetailsDayListProps> = ({ weatherList }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const pageLoadingStore = usePageLoading();
     const currentElement = useRef<HTMLDivElement | null>(null);
     const move = (direction: string, count: number) => {
         if (direction === 'left' && currentIndex === 0) {
@@ -90,9 +88,9 @@ const DaysList = observer<DetailsDayListProps>(({ weatherList }) => {
 
     const moveTo = currentElement.current !== null ? `-${currentIndex * currentElement.current.offsetWidth}px` : '0px';
 
-    return pageLoadingStore.isLoading
-        ? <CloudyLoader />
-        : (
+    return (
+        <>
+            <StaticSwitcher />
             <StyledDaysListContainer>
                 <StyledDaysListController>
                     <StyeldButtonGroup>
@@ -110,19 +108,7 @@ const DaysList = observer<DetailsDayListProps>(({ weatherList }) => {
                             }}
                         >
                             <AnimatedDayCard
-                                dt={weatherItem.dt}
-                                weather={weatherItem.weather}
-                                weatherCode={weatherItem.weatherCode}
-                                feelsLike={weatherItem.feelsLike}
-                                currentTemperature={weatherItem.currentTemperature}
-                                currentDayPeriods={weatherItem.currentDayPeriods}
-                                wind={weatherItem.wind}
-                                humidity={weatherItem.humidity}
-                                preassure={weatherItem.preassure}
-                                sunset={weatherItem.sunset}
-                                sunrise={weatherItem.sunrise}
-                                minTemperature={weatherItem.minTemperature}
-                                maxTemperature={weatherItem.maxTemperature}
+                                weatherStat={weatherItem}
                                 fullMode={currentIndex === index}
                                 today={index === 0}
                             />
@@ -130,7 +116,8 @@ const DaysList = observer<DetailsDayListProps>(({ weatherList }) => {
                     ))}
                 </StyledDaysList>
             </StyledDaysListContainer>
-        );
-});
+        </>
+    );
+};
 
 export default DaysList;

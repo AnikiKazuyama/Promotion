@@ -10,7 +10,7 @@ export default function Home(): JSX.Element {
     return (
         <div className={styles.container}>
             <Head>
-                <title>Aniki aka "Ichi" promotion project</title>
+                <title>Aniki aka &#34;Ichi&#34; promotion project</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 

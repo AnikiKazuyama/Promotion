@@ -39,13 +39,13 @@ export class LocationsStore {
     }
 
     getTimeInLocation(time?: ConfigType) {
-        const correctTime = isNumber(time) ? time * 1000 : time;
+        const correctTime = time && isNumber(time) ? time * 1000 : dayjs(time);
         return dayjs(correctTime).tz(this.location.timezone);
     }
 }
 
 let store: LocationsStore;
-const initializeStore = (initialData: Location) => {
+const useInitializeStore = (initialData: Location) => {
     const privateStore = store || new LocationsStore();
     useEffect(() => {
         if (initialData) {
@@ -61,4 +61,4 @@ const initializeStore = (initialData: Location) => {
     return privateStore;
 };
 
-export default initializeStore;
+export default useInitializeStore;

@@ -9,6 +9,7 @@ export type ToggleButton = {
     checked?: boolean
     type?: ToggleButtonType
     onChange?: ChangeEventHandler<HTMLInputElement>
+    value: string
 } & Omit<ButtonProps, 'onChange'>;
 
 const StyledHiddenInput = styled.input`
@@ -25,7 +26,7 @@ export const StyledToggleButtonContent = styled.span`
 `;
 
 const ToggleButton: React.FC<ToggleButton> = ({
-    children, checked, name, type = 'checkbox', onChange, ...rest
+    children, checked, defaultChecked, name, value, type = 'radio', onChange, ...rest
 }) => {
     const id = uniqueId();
 
@@ -35,8 +36,10 @@ const ToggleButton: React.FC<ToggleButton> = ({
                 id={id}
                 name={name}
                 checked={checked}
+                defaultChecked={defaultChecked}
                 type={type}
                 onChange={onChange}
+                value={value}
             />
             <StyledToggleButtonContent {...rest}>{children}</StyledToggleButtonContent>
         </label>

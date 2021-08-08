@@ -1,25 +1,28 @@
 import Divider from 'app/Weather/components/elemets/Divider';
 import styled from 'styled-components';
+import { WeatherIconsId } from 'app/Weather/services/types/common';
 import Header from './Header';
 import StatisticsSummary from './StatisticsSummary';
 import TemperatureSummary from './TemperatureSummary';
 import { ShortDayStatistic, Wind } from '../../../../types';
 
 export interface DayCardProps {
-    dt: number
     today: boolean
-    currentDayPeriods: Array<ShortDayStatistic>
-    currentTemperature: number
-    feelsLike: number
-    humidity: number
-    maxTemperature: number
-    minTemperature: number
-    preassure: number
-    sunrise: number
-    sunset: number
-    weather: string
-    weatherCode: string
-    wind: Wind
+    weatherStat: {
+        dt: number
+        currentDayPeriods: Array<ShortDayStatistic>
+        currentTemperature: number
+        feelsLike: number
+        humidity: number
+        maxTemperature: number
+        minTemperature: number
+        preassure: number
+        sunrise: number
+        sunset: number
+        weather: string
+        weatherCode: WeatherIconsId
+        wind: Wind
+    }
     className?: string
 }
 
@@ -31,43 +34,31 @@ export const DayCardContainer = styled.div`
 
 export const DayCard: React.FC<DayCardProps> = ({
     today,
-    dt,
-    currentDayPeriods,
-    currentTemperature,
-    feelsLike,
-    humidity,
-    maxTemperature,
-    minTemperature,
-    preassure,
-    sunrise,
-    sunset,
-    weather,
-    weatherCode,
-    wind,
+    weatherStat,
     className
 }) => (
     <DayCardContainer className={className}>
         <Header
             today={today}
-            time={dt}
-            maxTemperature={maxTemperature}
-            minTemperature={minTemperature}
+            time={weatherStat.dt}
+            maxTemperature={weatherStat.maxTemperature}
+            minTemperature={weatherStat.minTemperature}
         />
         <Divider gap="16px 0px 6px 0px" />
         <TemperatureSummary
-            weather={weather}
-            feelsLike={feelsLike}
-            currentTemperature={currentTemperature}
-            currentDayPeriods={currentDayPeriods}
-            weatherCode={weatherCode}
+            weather={weatherStat.weather}
+            feelsLike={weatherStat.feelsLike}
+            currentTemperature={weatherStat.currentTemperature}
+            currentDayPeriods={weatherStat.currentDayPeriods}
+            weatherCode={weatherStat.weatherCode}
         />
         <Divider gap="16px 0px 24px 0px" />
         <StatisticsSummary
-            sunset={sunset}
-            sunrise={sunrise}
-            wind={wind}
-            preassure={preassure}
-            humidity={humidity}
+            sunset={weatherStat.sunset}
+            sunrise={weatherStat.sunrise}
+            wind={weatherStat.wind}
+            preassure={weatherStat.preassure}
+            humidity={weatherStat.humidity}
         />
     </DayCardContainer>
 );

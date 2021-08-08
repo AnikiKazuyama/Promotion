@@ -2,10 +2,13 @@ import { findCityByCoords } from 'app/Weather/services/WeatherService';
 import pushToCity from 'app/Weather/utils/router';
 import { observer } from 'mobx-react-lite';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 import Button from '../../elemets/Button';
 
 export const MyGeoposition = observer(() => {
     const router = useRouter();
+    const { t } = useTranslation();
+
     const getPositionSuccess = async (geolocation: GeolocationPosition) => {
         const suggestedLocation = await findCityByCoords({
             lat: geolocation.coords.latitude,
@@ -24,7 +27,7 @@ export const MyGeoposition = observer(() => {
     };
 
     return (
-        <Button onClick={getPosition}>Мое местоположение</Button>
+        <Button onClick={getPosition}>{t('my location')}</Button>
     );
 });
 export default MyGeoposition;

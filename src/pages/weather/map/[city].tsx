@@ -1,4 +1,5 @@
 import BaseLayout from 'app/Weather/components/layouts/Base';
+import WeatherRoute from 'app/Weather/components/modules/Route';
 import getServerSideProps from 'app/Weather/components/modules/Statistics/utils/ssr';
 import dynamic from 'next/dynamic';
 
@@ -10,7 +11,9 @@ const DynamicMap = dynamic(() => import('app/Weather/components/modules/Statisti
 export default function WeatherShort() {
     return (
         <BaseLayout>
-            <DynamicMap />
+            <WeatherRoute>
+                <DynamicMap />
+            </WeatherRoute>
         </BaseLayout>
     );
 }

@@ -1,12 +1,12 @@
 import { GetServerSideProps } from 'next';
-import { AddressInfo } from 'node:net';
+import { AddressInfo } from 'net';
 
 import geoip from 'geoip-lite';
 
 // eslint-disable-next-line
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     const addressLookup = req.socket.address() as Partial<AddressInfo>;
-    const geoLookup = geoip.lookup(addressLookup.address);
+    const geoLookup = geoip.lookup(addressLookup.address || '');
 
     if (addressLookup && addressLookup.address && geoLookup) {
         return {

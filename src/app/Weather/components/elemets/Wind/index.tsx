@@ -1,4 +1,5 @@
 import degreeToDirection from 'app/Weather/utils/wind';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import Button from '../Button';
 
@@ -32,15 +33,19 @@ const Wind: React.FC<WindProps> = ({
     power,
     vertical,
     className
-}) => (
-    <StyledWind vertical={vertical} className={className}>
-        <span>
-            {power}
-            {' '}
-            м\с
-        </span>
-        <StyledWindDirection>{degreeToDirection(deg)}</StyledWindDirection>
-    </StyledWind>
-);
+}) => {
+    const { t } = useTranslation();
+
+    return (
+        <StyledWind vertical={vertical} className={className}>
+            <span>
+                {power}
+                {' '}
+                м\с
+            </span>
+            <StyledWindDirection>{t(degreeToDirection(deg) || '')}</StyledWindDirection>
+        </StyledWind>
+    );
+};
 
 export default Wind;

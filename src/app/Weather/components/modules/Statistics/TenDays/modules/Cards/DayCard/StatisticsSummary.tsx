@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import WindComponent, { StyledWindDirection } from 'app/Weather/components/elemets/Wind';
 import { useLocation } from 'app/Weather/context/location';
 import { observer } from 'mobx-react-lite';
+import { useTranslation } from 'react-i18next';
 import SunGraph from '../../SunGraph';
 import { Wind } from '../../../../types';
 
@@ -69,6 +70,8 @@ const StatisticsSummary: React.FC<StatisticsSummaryProps> = observer(({
     preassure
 }) => {
     const locationStore = useLocation();
+    const { t } = useTranslation();
+
     return (
         <StatisticSummary>
             <SunInfo>
@@ -86,18 +89,21 @@ const StatisticsSummary: React.FC<StatisticsSummaryProps> = observer(({
             </SunInfo>
             <Statistics>
                 <StatisticsItem>
-                    Ветер:
+                    {t('wind')}
+                    :
                     {' '}
                     <WindComponent power={wind.power} deg={wind.direction} />
                 </StatisticsItem>
                 <StatisticsItem>
-                    Влажность:
+                    {t('humidity')}
+                    :
                     {' '}
                     {humidity}
                     %
                 </StatisticsItem>
                 <StatisticsItem>
-                    Давление:
+                    {t('preassure')}
+                    :
                     {' '}
                     {preassure}
                     hPA

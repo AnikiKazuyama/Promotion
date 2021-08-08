@@ -1,8 +1,12 @@
+import { animated } from 'react-spring';
 import { verticalAligned } from 'app/common/styles/mixins';
+import { AnyType } from 'app/common/types';
 import IconContainer from 'app/Weather/components/elemets/IconContainer';
 import { StyledWeatherTag, WeatherTag } from 'app/Weather/components/elemets/WeatherTag';
 import WeatherIcons from 'app/Weather/components/elemets/WeatherTag/icons';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
+import { WeatherIconsId } from 'app/Weather/services/types/common';
 import { ShortDayStatistic } from '../../../../types';
 
 export const SmallSummaryWeather = styled.div`
@@ -30,12 +34,19 @@ export const DaySummaryWeather = styled.div`
     }
 `;
 
+export const WeatherDescription = styled.span`
+    &::first-letter {
+        text-transform: uppercase;
+    }
+`;
+
 export interface TemperatureSummaryProps {
     weather: string
     feelsLike: number
     currentTemperature: number
     currentDayPeriods: Array<ShortDayStatistic>,
-    weatherCode: string
+    weatherCode: WeatherIconsId,
+    style?: AnyType
 }
 
 const TemperatureSummary: React.FC<TemperatureSummaryProps> = ({
@@ -43,18 +54,21 @@ const TemperatureSummary: React.FC<TemperatureSummaryProps> = ({
     feelsLike,
     currentTemperature,
     currentDayPeriods,
-    weatherCode
+    weatherCode,
+    style
 }) => {
     const WeatherIcon = WeatherIcons[weatherCode];
+    const { t } = useTranslation();
+
     return (
-        <>
+        <animated.div style={style}>
             <SmallSummaryWeather>
                 <WeatherWithIcon>
                     <IconContainer size="xl"><WeatherIcon /></IconContainer>
-                    <span>{weather}</span>
+                    <WeatherDescription>{weather}</WeatherDescription>
                 </WeatherWithIcon>
                 <div>
-                    Feels like
+                    {t('feels like')}
                     {' '}
                     {feelsLike}
                     °
@@ -75,7 +89,7 @@ const TemperatureSummary: React.FC<TemperatureSummaryProps> = ({
                     />
                 ))}
             </DaySummaryWeather>
-        </>
+        </animated.div>
     );
 };
 

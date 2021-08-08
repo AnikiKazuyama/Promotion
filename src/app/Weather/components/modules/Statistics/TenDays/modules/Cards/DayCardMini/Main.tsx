@@ -1,11 +1,14 @@
+import { AnyType } from 'app/common/types';
 import IconContainer from 'app/Weather/components/elemets/IconContainer';
 import WeatherIcons from 'app/Weather/components/elemets/WeatherTag/icons';
+import { WeatherIconsId } from 'app/Weather/services/types/common';
 import { animated } from 'react-spring';
 import styled from 'styled-components';
 
 type DayCardMiniMainProps = {
-    weatherCode: string
+    weatherCode: WeatherIconsId
     weather: string
+    style?: AnyType
 }
 
 const StyledDayCardMiniMain = styled(animated.div)`
@@ -18,10 +21,14 @@ const Weather = styled.span`
     margin-left: 8px;
 `;
 
-export const DayCardMiniMain: React.FC<DayCardMiniMainProps> = ({ weatherCode, weather }) => {
+export const DayCardMiniMain: React.FC<DayCardMiniMainProps> = ({
+    weatherCode,
+    weather,
+    style
+}) => {
     const WeatherIcon = WeatherIcons[weatherCode];
     return (
-        <StyledDayCardMiniMain>
+        <StyledDayCardMiniMain style={style}>
             <IconContainer size="xl"><WeatherIcon /></IconContainer>
             <Weather>{weather}</Weather>
         </StyledDayCardMiniMain>

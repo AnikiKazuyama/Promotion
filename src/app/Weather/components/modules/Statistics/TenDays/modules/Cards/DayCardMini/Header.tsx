@@ -4,6 +4,7 @@ import { themeTransitioned } from 'app/common/styles/mixins';
 import { ConfigType } from 'dayjs';
 import { observer } from 'mobx-react-lite';
 import { useLocation } from 'app/Weather/context/location';
+import { AnyType } from 'app/common/types';
 
 export const StyledDayCardMiniHeader = styled(animated.div)`
     /* margin-bottom: 12px; */
@@ -19,13 +20,14 @@ export const DayOfTheMonth = styled.div`
 
 export type DayCardMiniHeaderProps = {
     date: ConfigType
+    style?: AnyType
 }
 
-const DayCardMiniHeader = observer<DayCardMiniHeaderProps>(({ date }) => {
+const DayCardMiniHeader = observer<DayCardMiniHeaderProps>(({ date, style }) => {
     const locationStore = useLocation();
 
     return (
-        <StyledDayCardMiniHeader>
+        <StyledDayCardMiniHeader style={style}>
             <DayOfTheWeek>{locationStore.getTimeInLocation(date).format('dddd')}</DayOfTheWeek>
             <DayOfTheMonth>{locationStore.getTimeInLocation(date).format('D MMMM')}</DayOfTheMonth>
         </StyledDayCardMiniHeader>
