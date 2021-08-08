@@ -11,10 +11,7 @@
   },
   "dependencies": {
     "@react-leaflet/core": "^1.1.0",
-    "@visx/curve": "^1.7.0",
     "@visx/gradient": "^1.7.0",
-    "@visx/group": "^1.7.0",
-    "@visx/mock-data": "^1.7.0",
     "@visx/responsive": "^1.7.0",
     "@visx/scale": "^1.7.0",
     "@visx/shape": "^1.7.0",
@@ -39,10 +36,8 @@
     "react-leaflet": "^3.2.0",
     "react-select": "^4.2.1",
     "react-spring": "^9.1.2",
-    "react-tabs": "^3.2.1",
     "react-use": "^17.2.1",
     "styled-components": "^5.2.1",
-    "swr": "^0.5.4",
     "utility-types": "^3.10.0"
   },
   "devDependencies": {
