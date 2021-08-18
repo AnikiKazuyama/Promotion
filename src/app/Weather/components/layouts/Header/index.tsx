@@ -1,4 +1,4 @@
-import { themeTransitioned, verticalAligned } from 'app/common/styles/mixins';
+import { themeTransitioned, verticalAligned } from 'app/common/style-helpers/mixins';
 import { useLocation } from 'app/Weather/context/location';
 import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';

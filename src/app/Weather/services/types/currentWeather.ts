@@ -12,7 +12,8 @@ import {
 } from './common';
 
 type FullSearchParams = {
-    coords: Coord
+    lat: number
+    lon: number
     zip: number
 }
 

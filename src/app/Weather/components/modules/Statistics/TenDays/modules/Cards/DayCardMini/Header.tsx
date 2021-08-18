@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { animated } from 'react-spring';
-import { themeTransitioned } from 'app/common/styles/mixins';
+import { themeTransitioned } from 'app/common/style-helpers/mixins';
 import { ConfigType } from 'dayjs';
 import { observer } from 'mobx-react-lite';
 import { useLocation } from 'app/Weather/context/location';

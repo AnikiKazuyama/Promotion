@@ -1,37 +1,49 @@
 import { uniqueId } from 'lodash';
-import { ChangeEventHandler } from 'react';
+import { ChangeEventHandler, HTMLAttributes, useRef } from 'react';
 import styled from 'styled-components';
-import { ButtonStyle, ButtonProps } from '../Button';
+import { BaseButton, ButtonProps } from '../Button';
 
 type ToggleButtonType = 'checkbox' | 'radio'
 
-export type ToggleButton = {
+export type ToggleButton<AttributeElementProps = ButtonProps> = {
+    name?: string
     checked?: boolean
     type?: ToggleButtonType
     onChange?: ChangeEventHandler<HTMLInputElement>
     value: string
-} & Omit<ButtonProps, 'onChange'>;
+} & Omit<AttributeElementProps, 'onChange'>;
 
 const StyledHiddenInput = styled.input`
     position: absolute;
     opacity: 0;
+`;
 
-    &:checked + span {
-        background-color: red;
+const StyledToggleButton = styled(BaseButton)<{checked?: boolean}>`
+    && {
+        ${({ checked }) => (checked ? 'background-color: var(--colors-active-borders)' : '')}
     }
 `;
 
-export const StyledToggleButtonContent = styled.span`
-    ${ButtonStyle}
-`;
-
-const ToggleButton: React.FC<ToggleButton> = ({
-    children, checked, defaultChecked, name, value, type = 'radio', onChange, ...rest
+const ToggleButton: React.FC<ToggleButton<HTMLAttributes<HTMLLabelElement>>> = ({
+    children,
+    checked,
+    defaultChecked,
+    name,
+    value,
+    type = 'radio',
+    onChange,
+    ...rest
 }) => {
     const id = uniqueId();
+    const inputRef = useRef<HTMLInputElement>(null);
 
     return (
-        <label htmlFor={id}>
+        <StyledToggleButton
+            as="label"
+            htmlFor={id}
+            checked={inputRef.current?.checked || false}
+            {...rest}
+        >
             <StyledHiddenInput
                 id={id}
                 name={name}
@@ -40,9 +52,10 @@ const ToggleButton: React.FC<ToggleButton> = ({
                 type={type}
                 onChange={onChange}
                 value={value}
+                ref={inputRef}
             />
-            <StyledToggleButtonContent {...rest}>{children}</StyledToggleButtonContent>
-        </label>
+            <span>{children}</span>
+        </StyledToggleButton>
     );
 };
 

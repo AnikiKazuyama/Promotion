@@ -1,19 +1,23 @@
-import IconContainer from 'app/Weather/components/elemets/IconContainer';
-import WeatherIcons from 'app/Weather/components/elemets/WeatherTag/icons';
 import { CurrentWeatherResponse } from 'app/Weather/services/types/currentWeather';
 import { getCurrentWeather } from 'app/Weather/services/WeatherService';
 import { LatLng } from 'leaflet';
 import styled from 'styled-components';
+import Wind, { StyledWindDirection } from 'app/Weather/components/elemets/Wind';
 import useFetchOnMove from './hooks/useFetchOnMove';
 import MouseMoveLoadableContentTooltip from './common/MouseMoveLoadableContentTooltip';
 import MouseMoveTooltip from './common/MouseMoveTooltip';
 
-const TemperaureContainer = styled.div`
+const WindContainer = styled.div`
     display: flex;
     align-items: center;
+
+    ${StyledWindDirection} {
+        border: none;
+        margin: 0;
+    }
 `;
 
-const TemperatureTooltip: React.FC = () => {
+const WindTooltip: React.FC = () => {
     const {
         data,
         handleMove,
@@ -25,9 +29,7 @@ const TemperatureTooltip: React.FC = () => {
         handleMove({ lat: latlng.lat, lon: latlng.lng });
     };
 
-    const weatherIconCode = data?.weather[0]?.icon;
-    const WeatherIcon = weatherIconCode ? WeatherIcons[weatherIconCode] : null;
-    const temp = data?.main?.temp;
+    const wind = data?.wind;
 
     return (
         <MouseMoveTooltip onMove={handleMouseMove}>
@@ -35,16 +37,12 @@ const TemperatureTooltip: React.FC = () => {
                 isError={error}
                 isLoading={isLoading}
             >
-                <TemperaureContainer>
-                    {WeatherIcon ? <IconContainer><WeatherIcon /></IconContainer> : null}
-                    <span style={{ marginLeft: 8 }}>
-                        {temp}
-                        °
-                    </span>
-                </TemperaureContainer>
+                <WindContainer>
+                    <Wind power={wind?.speed} deg={wind?.deg} />
+                </WindContainer>
             </MouseMoveLoadableContentTooltip>
         </MouseMoveTooltip>
     );
 };
 
-export default TemperatureTooltip;
+export default WindTooltip;

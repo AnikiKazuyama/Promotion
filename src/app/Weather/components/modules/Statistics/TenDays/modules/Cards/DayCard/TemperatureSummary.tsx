@@ -1,5 +1,5 @@
 import { animated } from 'react-spring';
-import { verticalAligned } from 'app/common/styles/mixins';
+import { verticalAligned } from 'app/common/style-helpers/mixins';
 import { AnyType } from 'app/common/types';
 import IconContainer from 'app/Weather/components/elemets/IconContainer';
 import { StyledWeatherTag, WeatherTag } from 'app/Weather/components/elemets/WeatherTag';

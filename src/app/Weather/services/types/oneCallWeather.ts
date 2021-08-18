@@ -63,16 +63,10 @@ export interface MinutelyWeatherForecast {
     precipitation: number;
 }
 
-export type HistoricalWeatherApiRequestParams = {
-    coords: Coord
-    exclude: Array<string>,
-    units: Units,
-    dt: number
-}
-
 type FullSearchParams = {
     exclude?: Array<string>
-    coords: Coord
+    lat: number
+    lon: number
 }
 
 export type SearchParams = FullSearchParams

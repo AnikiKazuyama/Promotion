@@ -8,6 +8,7 @@ type WindProps = {
     power: number
     vertical?: boolean
     className?: string
+    borderless?: boolean
 }
 
 export const StyledWindDirection = styled(Button)`
@@ -20,10 +21,11 @@ const StyledWind = styled.div<{vertical?: boolean}>`
     flex-direction: ${({ vertical }) => (vertical ? 'column' : 'row')};
     align-items: ${({ vertical }) => (vertical ? 'initial' : 'center')};
     justify-content: center;
-    ${({ vertical }) => (vertical ? '' : 'margin: 0 8px;')};
+
+    ${({ vertical }) => (vertical ? '' : 'margin-left: 6px;')};
     
     ${StyledWindDirection} {
-        ${({ vertical }) => (vertical ? '' : 'margin: 0 8px;')};
+        ${({ vertical }) => (vertical ? '' : 'margin-left: 6px;')};
         margin-top: ${({ vertical }) => (vertical ? '12px' : '0px')}
     }
 `;

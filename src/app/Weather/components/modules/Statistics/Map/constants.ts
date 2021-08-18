@@ -16,5 +16,12 @@ export const LAYERS = {
             `https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}`,
             { id: 'Precipitation' }
         )
+    },
+    wind: {
+        title: 'Wind',
+        tileLayer: tileLayer(
+            `https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}`,
+            { id: 'Wind' }
+        )
     }
 };

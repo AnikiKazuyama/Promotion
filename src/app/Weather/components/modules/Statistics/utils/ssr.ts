@@ -8,10 +8,10 @@ import mapDtoToUiData from './dtoMapperToUi';
 
 const getProps = async (coords: Coord, lang?: string) => {
     const result = await Promise.all([
-        getCurrentWeather({ coords, lang }),
-        getWeatherForecast({ coords, lang }),
+        getCurrentWeather({ ...coords, lang }),
+        getWeatherForecast({ ...coords, lang }),
         getOneCallWeather({
-            coords,
+            ...coords,
             exclude: ['current', 'minutely', 'alerts'],
             lang
         })]);

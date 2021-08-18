@@ -1,4 +1,4 @@
-import { verticalAligned } from 'app/common/styles/mixins';
+import { verticalAligned } from 'app/common/style-helpers/mixins';
 import IconContainer from 'app/Weather/components/elemets/IconContainer';
 import {
     Sunrise, Sunset

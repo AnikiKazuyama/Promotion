@@ -1,4 +1,4 @@
-import { themeTransitioned } from 'app/common/styles/mixins';
+import { themeTransitioned } from 'app/common/style-helpers/mixins';
 import styled from 'styled-components';
 
 type DividerProps = {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import camelcaseKeys from 'camelcase-keys';
-import i18n from 'utils/translation';
+import i18n from 'app/Weather/utils/translation';
 import { Units } from './types/common';
 
 const BASE_URL = 'https://api.openweathermap.org/data/2.5';

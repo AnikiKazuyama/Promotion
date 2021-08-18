@@ -12,25 +12,14 @@ const requester = async <ReqResponse, ReqParams>(
     return response.data;
 };
 
-export const getOneCallWeather = (params: OneCallRequestParams) => requester<OneCallWeatherResponse, OneCallRequestParams>('/onecall', {
-    ...params.coords,
-    ...params
-});
+export const getOneCallWeather = (params: OneCallRequestParams) => requester<OneCallWeatherResponse, OneCallRequestParams>('/onecall', params);
 
-export const getPreviousWeather = (params: HistoryCallRequestParams) => requester<OneCallWeatherResponse, OneCallRequestParams>('/onecall/timemachine', {
-    ...params.coords,
-    ...params
-});
+export const getPreviousWeather = (params: HistoryCallRequestParams) => requester<OneCallWeatherResponse, OneCallRequestParams>('/onecall/timemachine', params);
 
-export const getCurrentWeather = (params: CurrentWeatherRequestParams) => requester<CurrentWeatherResponse, CurrentWeatherRequestParams>('/weather', {
-    ...params,
-    ...params.coords
-});
+export const getCurrentWeather = (params: CurrentWeatherRequestParams) => requester<CurrentWeatherResponse, CurrentWeatherRequestParams>('/weather', params);
 
-export const getWeatherForecast = async (params: ForecastWeatherRequestParams) => requester<ForecastWeatherResponse, ForecastWeatherRequestParams>('/forecast', {
-    ...params.coords,
-    ...params
-});
+export const getWeatherForecast = async (params: ForecastWeatherRequestParams) => requester<ForecastWeatherResponse, ForecastWeatherRequestParams>('/forecast', params);
 
 export const findCityByQuery = async ({ q }: FindCityByQueryParams) => requester<FindCityByQueryResponse, FindCityByQueryParams>('/find', { q });
+
 export const findCityByCoords = async ({ lat, lon }: FindCityByCoordsParams) => requester<FindCityByQueryResponse, FindCityByCoordsParams>('/find', { lat, lon });

@@ -1,4 +1,4 @@
-import { themeTransitioned } from 'app/common/styles/mixins';
+import { themeTransitioned } from 'app/common/style-helpers/mixins';
 import { AnyType } from 'app/common/types';
 import { WeatherIconsId } from 'app/Weather/services/types/common';
 import { forwardRef } from 'react';

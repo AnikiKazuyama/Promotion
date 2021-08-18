@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { verticalAligned } from 'app/common/styles/mixins';
+import { verticalAligned } from 'app/common/style-helpers/mixins';
 import MyGeopositionBtn from '../Buttons/MyGeoposition';
 
 export const StyledGeoposition = styled.div`

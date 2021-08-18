@@ -28,7 +28,7 @@ const globalStyles = css`
     // Secondary AreaClosed background
     --color-blue-light: #cae3f9;
     // Active tabs borders, suns
-    --color-yellow: #ffc107;
+    --color-yellow: #fd5;
 
     // Dark theme colors
 
@@ -115,6 +115,11 @@ img {
     height: 0px;
     position: absolute;
     z-index: -1;
+}
+
+.leaflet-div-icon {
+    background-color: transparent;
+    border: none;
 }
 `;
 

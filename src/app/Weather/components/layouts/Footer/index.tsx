@@ -1,4 +1,4 @@
-import { verticalAligned } from 'app/common/styles/mixins';
+import { verticalAligned } from 'app/common/style-helpers/mixins';
 import styled from 'styled-components';
 import Wrapper from '../Wrapper';
 

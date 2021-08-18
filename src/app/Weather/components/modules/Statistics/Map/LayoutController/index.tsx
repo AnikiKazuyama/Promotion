@@ -12,12 +12,13 @@ const StyledMapLayoutController = styled(StyeldButtonGroup)`
     box-shadow: 0 2px 6px 0 rgb(0 0 0 / 20%);
 `;
 
-type MapLayoutControllerLayersType = Record<string, {title: string, tileLayer: Layer}>
+export type MapLayoutControllerLayerType = {title: string, tileLayer: Layer}
+export type MapLayoutControllerLayersType = Record<string, MapLayoutControllerLayerType>
 
 type MapLayoutControllerProps = {
     map: Map | undefined,
     layers: MapLayoutControllerLayersType,
-    onChange?: () => void
+    onChange?: (layer: MapLayoutControllerLayerType) => void
 }
 
 const MapLayoutController: React.FC<MapLayoutControllerProps> = ({ map, layers, onChange }) => {
@@ -31,6 +32,7 @@ const MapLayoutController: React.FC<MapLayoutControllerProps> = ({ map, layers, 
         tileGroupRef.current.addLayer(defaultLayer);
         if (map) {
             map.addLayer(tileGroupRef.current);
+            if (onChange) { onChange(layers[layerNames[0]]); }
         }
 
         return () => {
@@ -38,7 +40,8 @@ const MapLayoutController: React.FC<MapLayoutControllerProps> = ({ map, layers, 
                 tileGroup.removeLayer(layers[layerName].tileLayer);
             });
         };
-    }, [layers, map]);
+    // eslint-disable-next-line
+    }, [map]);
 
     const handleControllerClick: ChangeEventHandler<HTMLInputElement> = (e) => {
         if (map && e.target) {
@@ -51,7 +54,7 @@ const MapLayoutController: React.FC<MapLayoutControllerProps> = ({ map, layers, 
                 tileGroup.addLayer(selectedLayer);
             });
 
-            if (onChange) { onChange(); }
+            if (onChange) { onChange(layers[selectedLayerName]); }
         }
     };
 

@@ -11,7 +11,12 @@ import {
 import { useMap } from 'react-leaflet';
 import { useMeasure } from 'react-use';
 import styled from 'styled-components';
-import getMapDomElement from '../utils';
+import getMapDomElement from '../../utils';
+
+type MouseMoveTooltipProps = {
+    onMove?: (latlng: LatLng) => void
+    onClose?: () => void
+}
 
 const MouseMoveTooltipWrapper = styled.div`
     display: flex;
@@ -27,7 +32,11 @@ const MouseMoveTooltipWrapper = styled.div`
 
 const tooltipOffset = 45;
 
-const MouseMoveTooltip: React.FC = ({ children }) => {
+const MouseMoveTooltip: React.FC<MouseMoveTooltipProps> = ({
+    onMove,
+    onClose,
+    children
+}) => {
     const map = useMap();
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [visible, setVisible] = useState(false);
@@ -76,9 +85,23 @@ const MouseMoveTooltip: React.FC = ({ children }) => {
             }));
         };
 
+        const close = () => {
+            setVisible(false);
+
+            if (onClose) {
+                onClose();
+            }
+        };
+
         const move: LeafletMouseEventHandlerFn = (e) => {
-            const mapDomElement = e.originalEvent.target as HTMLDivElement;
+            const mapDomElement = e.originalEvent.currentTarget as HTMLDivElement;
             mouseMovePosition.current = e.containerPoint;
+            const { target } = e.originalEvent;
+
+            if (!mapDomElement.isEqualNode(target as HTMLElement)) {
+                close();
+                return;
+            }
 
             if (!mapDomElement) return;
 
@@ -105,65 +128,54 @@ const MouseMoveTooltip: React.FC = ({ children }) => {
             });
 
             geoPositionRef.current = e.latlng;
-        };
 
-        const open: LeafletMouseEventHandlerFn = (e) => {
-            setVisible(true);
-            setPosition({
-                x: e.containerPoint.x - (width / 2),
-                y: e.containerPoint.y
-            });
-
-            geoPositionRef.current = e.latlng;
-        };
-
-        const close = () => {
-            setVisible(false);
+            if (onMove && visible) {
+                onMove(e.latlng);
+            }
         };
 
         map.on('mousemove', move);
-        map.on('mouseover', open);
         map.on('mouseout', close);
 
         calculateOverlap();
 
         return () => {
             map.off('mousemove', move);
-            map.off('mouseover', open);
             map.off('mouseout', close);
         };
-    }, [containerRef, height, map, width]);
+    }, [containerRef, height, map, onClose, onMove, visible, width]);
 
     const newGeoPosition = { position: geoPositionRef.current };
 
     return (
-        <div
-            ref={(ref) => {
-                mouseMoveTooltipRef.current = ref;
-                containerRef(ref);
-            }}
-            style={{
-                position: 'absolute',
-                top: position.y,
-                left: position.x,
-                zIndex: 99999999,
-                visibility: visible ? 'visible' : 'hidden'
-            }}
-        >
-            {
-                isValidElement(children)
-                    ? (
-                        <MouseMoveTooltipWrapper>
-                            {Children.map(
-                                children, (child) => cloneElement(
-                                    child, newGeoPosition
-                                )
-                            )}
-                        </MouseMoveTooltipWrapper>
-                    )
-                    : <MouseMoveTooltipWrapper>{null}</MouseMoveTooltipWrapper>
-            }
-        </div>
+        visible ? (
+            <div
+                ref={(ref) => {
+                    mouseMoveTooltipRef.current = ref;
+                    containerRef(ref);
+                }}
+                style={{
+                    position: 'absolute',
+                    top: position.y,
+                    left: position.x,
+                    zIndex: 699
+                }}
+            >
+                {
+                    isValidElement(children)
+                        ? (
+                            <MouseMoveTooltipWrapper>
+                                {Children.map(
+                                    children, (child) => cloneElement(
+                                        child, newGeoPosition
+                                    )
+                                )}
+                            </MouseMoveTooltipWrapper>
+                        )
+                        : <MouseMoveTooltipWrapper>{null}</MouseMoveTooltipWrapper>
+                }
+            </div>
+        ) : null
     );
 };
 

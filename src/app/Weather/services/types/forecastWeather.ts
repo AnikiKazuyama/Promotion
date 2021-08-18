@@ -7,7 +7,8 @@ import {
 type FullSearchParams = {
     id: number
     cnt: number
-    coords: Coord
+    lat: number
+    lon: number
     zip: number
 }
 

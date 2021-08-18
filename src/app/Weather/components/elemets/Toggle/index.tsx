@@ -1,7 +1,7 @@
 import { InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
 import { math } from 'polished';
-import { themeTransitioned } from 'app/common/styles/mixins';
+import { themeTransitioned } from 'app/common/style-helpers/mixins';
 
 const Switch = styled.label`
     cursor: pointer;

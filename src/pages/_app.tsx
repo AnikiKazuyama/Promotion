@@ -5,7 +5,7 @@ import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import { AppProps } from 'next/dist/next-server/lib/router/router';
 import Styles from 'styles';
-import i18n, { useChangeTranslation } from 'utils/translation';
+import i18n, { useChangeTranslation } from 'app/Weather/utils/translation';
 import { I18nextProvider } from 'react-i18next';
 
 dayjs.extend(utc);

@@ -1,4 +1,4 @@
-import { themeTransitioned } from 'app/common/styles/mixins';
+import { themeTransitioned } from 'app/common/style-helpers/mixins';
 import { AnyType } from 'app/common/types';
 import { useLocation } from 'app/Weather/context/location';
 import { observer } from 'mobx-react-lite';

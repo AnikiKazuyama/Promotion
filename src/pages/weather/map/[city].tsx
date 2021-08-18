@@ -8,11 +8,11 @@ const DynamicMap = dynamic(() => import('app/Weather/components/modules/Statisti
 /**
  *
  */
-export default function WeatherShort() {
+export default function WeatherShort({ initialState }) {
     return (
         <BaseLayout>
             <WeatherRoute>
-                <DynamicMap />
+                <DynamicMap initialCenter={initialState.coordinates} />
             </WeatherRoute>
         </BaseLayout>
     );
