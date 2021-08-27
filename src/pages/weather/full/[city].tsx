@@ -1,14 +1,12 @@
-import BaseLayout from 'app/Weather/components/layouts/Base';
-import WeatherRoute from 'app/Weather/components/modules/Route';
-import DetailsDaysList, { DetailsDayListProps } from 'app/Weather/components/modules/Statistics/TenDays/pages/InDetails';
-import getServerSideProps from 'app/Weather/components/modules/Statistics/utils/ssr';
+import BaseLayout from 'app/components/layouts/Base';
+import WeatherRoute from 'app/components/modules/Route';
+import { DetailsDaysList, WeatherListProps } from 'app/components/modules/WeatherPrediction';
+import getServerSideProps from 'app/components/modules/WeatherPrediction/ssr/getServerSideProps';
 
 /**
  * Render full day statistics
  */
-export default function FullDayStatistics({
-    weatherList
-}: DetailsDayListProps): JSX.Element {
+export default function FullDayStatistics({ weatherList }: WeatherListProps) {
     return (
         <BaseLayout>
             <WeatherRoute>

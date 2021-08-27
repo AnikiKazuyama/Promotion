@@ -1,11 +1,11 @@
-import { PageLoadingProvider } from 'app/Weather/context/pageLoading';
-import { LocationProvider } from 'app/Weather/context/location';
+import { PageLoadingProvider } from 'app/context/pageLoading';
+import { LocationProvider } from 'app/context/location';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import { AppProps } from 'next/dist/next-server/lib/router/router';
 import Styles from 'styles';
-import i18n, { useChangeTranslation } from 'app/Weather/utils/translation';
+import i18n, { useChangeTranslation } from 'app/utils/translation';
 import { I18nextProvider } from 'react-i18next';
 
 dayjs.extend(utc);

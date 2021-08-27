@@ -1,29 +1,7 @@
 import { GetServerSideProps } from 'next';
-import { AddressInfo } from 'net';
+import getServerSidePropsForIndexPage from 'app/common/ssr';
+import BlankPage from 'app/components/modules/BlankPage';
 
-import geoip from 'geoip-lite';
+export const getServerSideProps: GetServerSideProps = (ssrProps) => getServerSidePropsForIndexPage('/weather/full', '/weather/full/san-antonio')(ssrProps);
 
-// eslint-disable-next-line
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-    const addressLookup = req.socket.address() as Partial<AddressInfo>;
-    const geoLookup = geoip.lookup(addressLookup.address || '');
-
-    if (addressLookup && addressLookup.address && geoLookup) {
-        return {
-            redirect: {
-                destination: `/weather/full/${geoLookup.city.toLowerCase().replace(' ', '-')}`,
-                permanent: true
-            }
-        };
-    }
-
-    return {
-        redirect: {
-            destination: '/weather/full/san-antonio',
-            permanent: true
-        }
-    };
-};
-
-const Page = () => null;
-export default Page;
+export default BlankPage;

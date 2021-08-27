@@ -1,13 +1,13 @@
-import BaseLayout from 'app/Weather/components/layouts/Base';
-import WeatherRoute from 'app/Weather/components/modules/Route';
-import DaysList, { DetailsDayListProps } from 'app/Weather/components/modules/Statistics/TenDays/pages/Short';
+import BaseLayout from 'app/components/layouts/Base';
+import WeatherRoute from 'app/components/modules/Route';
+import { DaysList, WeatherListProps } from 'app/components/modules/WeatherPrediction';
 
-import getServerSideProps from 'app/Weather/components/modules/Statistics/utils/ssr';
+import getServerSideProps from 'app/components/modules/WeatherPrediction/ssr/getServerSideProps';
 
 /**
  *
  */
-export default function WeatherShort({ weatherList }: DetailsDayListProps): JSX.Element {
+export default function WeatherShort({ weatherList }: WeatherListProps) {
     return (
         <BaseLayout>
             <WeatherRoute>

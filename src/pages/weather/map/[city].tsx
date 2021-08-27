@@ -1,18 +1,18 @@
-import BaseLayout from 'app/Weather/components/layouts/Base';
-import WeatherRoute from 'app/Weather/components/modules/Route';
-import getServerSideProps from 'app/Weather/components/modules/Statistics/utils/ssr';
+import BaseLayout from 'app/components/layouts/Base';
+import WeatherRoute from 'app/components/modules/Route';
+import getServerSideProps from 'app/components/modules/WeatherPrediction/ssr/getServerSideProps';
 import dynamic from 'next/dynamic';
 
-const DynamicMap = dynamic(() => import('app/Weather/components/modules/Statistics/Map'), { ssr: false });
+const DynamicMap = dynamic(() => import('app/components/modules/Map'), { ssr: false });
 
 /**
  *
  */
-export default function WeatherShort({ initialState }) {
+export default function WeatherShort() {
     return (
         <BaseLayout>
             <WeatherRoute>
-                <DynamicMap initialCenter={initialState.coordinates} />
+                <DynamicMap />
             </WeatherRoute>
         </BaseLayout>
     );
