@@ -111,13 +111,6 @@ img {
 }
 
 .transparent-marker {
-    width: 0px;
-    height: 0px;
-    position: absolute;
-    z-index: -1;
-}
-
-.leaflet-div-icon {
     background-color: transparent;
     border: none;
 }

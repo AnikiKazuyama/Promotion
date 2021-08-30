@@ -19,7 +19,8 @@ const divIcon = new DivIcon({
     html: renderToString(<MarkerIcon />),
     iconSize: [30, 30],
     iconAnchor: [15, 35],
-    popupAnchor: [-6, 5]
+    popupAnchor: [-6, 5],
+    className: 'transparent-marker'
 });
 
 const ClickMarker: React.FC<MarkerProps> = ({
