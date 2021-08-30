@@ -37,17 +37,23 @@ const getServerSidePropsForIndexPages = (
 // eslint-disable-next-line
 export const withCityRequired = (func: getServerSidePropsHandlerWithCityRequired) => {
     return async (ssrContext: GetServerSidePropsContext) => {
-        const cityQueryParam = ssrContext.query.city as string;
-        const city = await findCityByCityName(cityQueryParam);
+        try {
+            const cityQueryParam = ssrContext.query.city as string;
+            const city = await findCityByCityName(cityQueryParam);
 
-        if (city) {
-            const result = await func(ssrContext, city);
-            return result;
+            if (city) {
+                const result = await func(ssrContext, city);
+                return result;
+            }
+
+            return {
+                notFound: true
+            };
+        } catch {
+            return {
+                notFound: true
+            };
         }
-
-        return {
-            notFound: true
-        };
     };
 };
 
