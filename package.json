@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "heroku-postbuild": "next build",
     "start": "next start -p $PORT",
     "analyze": "cross-env ANALYZE=true npm run build",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
