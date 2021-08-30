@@ -30,7 +30,7 @@ COPY --from=builder /app/package.json ./package.json
 
 USER nextjs
 
-EXPOSE 3000
+EXPOSE ${PORT}
 
 ENV NEXT_TELEMETRY_DISABLED 0
 
