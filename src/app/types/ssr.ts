@@ -1,8 +1,8 @@
-import { AnyType } from 'app/common/types';
 import { Location } from 'app/context/location/store';
-import { GetServerSideProps } from 'next';
-import { Assign } from 'utility-types';
+import { CitySuggestWithTimeZone } from 'app/services/types/findCityByQuery';
+import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
+
+type InitialStateType = {initialState: Location}
 
 // eslint-disable-next-line
-export type getServerSidePropsHandler<PageProps extends Record<string, AnyType> = {}> =
-    GetServerSideProps<Assign<PageProps, {initialState: Location}>>;
+export type getServerSidePropsHandlerWithCityRequired = (context: GetServerSidePropsContext, city: CitySuggestWithTimeZone) => Promise<GetServerSidePropsResult<InitialStateType>>

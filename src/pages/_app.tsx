@@ -7,6 +7,7 @@ import { AppProps } from 'next/dist/next-server/lib/router/router';
 import Styles from 'styles';
 import i18n, { useChangeTranslation } from 'app/utils/translation';
 import { I18nextProvider } from 'react-i18next';
+import 'dayjs/locale/ru';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);

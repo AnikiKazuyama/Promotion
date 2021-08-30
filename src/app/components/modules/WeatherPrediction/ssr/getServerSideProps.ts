@@ -1,18 +1,15 @@
-import { Coord } from 'app/services/types/common';
 import {
     getCurrentWeather,
     getOneCallWeather,
-    getWeatherForecast,
-    findCityByCityName
+    getWeatherForecast
 } from 'app/services/WeatherService';
 import { Location } from 'app/context/location/store';
-import { getServerSidePropsHandler } from 'app/types/ssr';
-import { AnyType } from 'app/common/types';
 import { withCityRequired } from 'app/common/ssr';
+import { CitySuggest } from 'app/services/types/findCityByQuery';
+import { GetServerSidePropsContext } from 'next';
 import mapDtoToUiData from './dtoMapperToUi';
-import { WeatherListProps } from '../types';
 
-const getProps = async (city, context) => {
+const getProps = async (context: GetServerSidePropsContext, city: CitySuggest) => {
     const coords = {
         lat: city.coord.lat,
         lon: city.coord.lon
@@ -41,26 +38,6 @@ const getProps = async (city, context) => {
     });
 };
 
-// const getServerSideProps: getServerSidePropsHandler<WeatherListProps> = async ({
-//     query,
-//     locale
-// }) => {
-//     const cityQueryParam = query.city as string;
-//     const city = await findCityByCityName(cityQueryParam);
+const getpropsWithCityRequired = withCityRequired(getProps);
 
-//     if (city) {
-//         const props = await getProps({
-//             lat: city.coord.lat,
-//             lon: city.coord.lon
-//         }, locale);
-//         return ({ props });
-//     }
-
-//     return {
-//         notFound: true
-//     };
-// };
-
-const getServerSideProps = (context: AnyType) => withCityRequired(context)(getProps);
-
-export default getServerSideProps;
+export default getpropsWithCityRequired;

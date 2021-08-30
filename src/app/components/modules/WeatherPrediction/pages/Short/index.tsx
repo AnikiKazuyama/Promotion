@@ -69,8 +69,8 @@ const DaysList: React.FC<WeatherListProps> = ({ weatherList }) => {
             <StyledDaysListContainer>
                 <StyledDaysListController>
                     <StyeldButtonGroup>
-                        <Button onClick={() => move('left', 1)}><IconContainer size="xs"><LeftChevron /></IconContainer></Button>
-                        <Button endIcon={<IconContainer size="xs"><RightChevron /></IconContainer>} onClick={() => move('right', 1)}>Туда</Button>
+                        <Button onClick={() => move('left', 1)}><LeftChevron /></Button>
+                        <Button endIcon={<RightChevron />} onClick={() => move('right', 1)}>Туда</Button>
                     </StyeldButtonGroup>
                 </StyledDaysListController>
                 <StyledDaysList>

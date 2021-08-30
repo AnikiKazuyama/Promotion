@@ -2,8 +2,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { AddressInfo } from 'net';
 import geoip from 'geoip-lite';
 import { findCityByCityName } from 'app/services/WeatherService';
-import { getServerSidePropsHandler } from 'app/types/ssr';
-import { AnyType } from '../types';
+import { getServerSidePropsHandlerWithCityRequired } from 'app/types/ssr';
 
 /**
  *
@@ -36,12 +35,19 @@ const getServerSidePropsForIndexPages = (
 };
 
 // eslint-disable-next-line
-export const withCityRequired = (ssrContext: GetServerSidePropsContext) => {
-    return async (func: AnyType) => {
-        const { query } = ssrContext;
-        const cityQueryParam = query.city as string;
+export const withCityRequired = (func: getServerSidePropsHandlerWithCityRequired) => {
+    return async (ssrContext: GetServerSidePropsContext) => {
+        const cityQueryParam = ssrContext.query.city as string;
         const city = await findCityByCityName(cityQueryParam);
-        return func(city, ssrContext);
+
+        if (city) {
+            const result = await func(ssrContext, city);
+            return result;
+        }
+
+        return {
+            notFound: true
+        };
     };
 };
 

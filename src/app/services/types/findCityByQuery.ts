@@ -1,3 +1,4 @@
+import { Assign } from 'utility-types';
 import { CommonRequestParams, Coord } from './common';
 
 export type CitySuggest = {
@@ -9,6 +10,8 @@ export type CitySuggest = {
         country: string
     }
 }
+
+export type CitySuggestWithTimeZone = Assign<CitySuggest, {timezone: string}>
 
 export interface FindCityByQueryResponse {
     cod: number

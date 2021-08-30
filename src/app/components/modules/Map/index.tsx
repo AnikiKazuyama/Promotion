@@ -23,6 +23,7 @@ const MapWrapper = styled(MapContainer)`
 
 const Aside = styled.div`
     padding: 8px;
+    min-width: 250px;
 `;
 
 export const TooltipContents = {

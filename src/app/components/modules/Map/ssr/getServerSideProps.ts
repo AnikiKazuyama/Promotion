@@ -1,28 +1,16 @@
-import { findCityByCityName } from 'app/services/WeatherService';
-import { getServerSidePropsHandler } from 'app/types/ssr';
+import { withCityRequired } from 'app/common/ssr';
+import { CitySuggestWithTimeZone } from 'app/services/types/findCityByQuery';
+import { GetServerSidePropsContext } from 'next';
 
-const getServerSideProps: getServerSidePropsHandler = async ({
-    query
-}) => {
-    const cityQueryParam = query.city as string;
-    const city = await findCityByCityName(cityQueryParam);
-
-    if (city) {
-        return ({
-            props: {
-                initialState: {
-                    city: city.name,
-                    country: city.sys.country,
-                    coordinates: [city.coord.lat, city.coord.lon],
-                    timezone: city.timezone
-                }
-            }
-        });
+const getServerSideProps = async (_: GetServerSidePropsContext, city: CitySuggestWithTimeZone) => ({
+    props: {
+        initialState: {
+            city: city.name,
+            country: city.sys.country,
+            coordinates: [city.coord.lat, city.coord.lon] as [number, number],
+            timezone: city.timezone
+        }
     }
+});
 
-    return {
-        notFound: true
-    };
-};
-
-export default getServerSideProps;
+export default withCityRequired(getServerSideProps);

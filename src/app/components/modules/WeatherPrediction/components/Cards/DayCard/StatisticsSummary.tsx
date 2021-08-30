@@ -87,28 +87,37 @@ const StatisticsSummary: React.FC<StatisticsSummaryProps> = observer(({
                 </SunTime>
                 <SunGraph />
             </SunInfo>
-            <Statistics>
-                <StatisticsItem>
-                    {t('wind')}
-                    :
-                    {' '}
-                    <WindComponent power={wind.power} deg={wind.direction} />
-                </StatisticsItem>
-                <StatisticsItem>
-                    {t('humidity')}
-                    :
-                    {' '}
-                    {humidity}
-                    %
-                </StatisticsItem>
-                <StatisticsItem>
-                    {t('preassure')}
-                    :
-                    {' '}
-                    {preassure}
-                    hPA
-                </StatisticsItem>
-            </Statistics>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            {t('wind')}
+                            :
+                        </td>
+                        <td>
+                            <WindComponent power={wind.power} deg={wind.direction} />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {t('humidity')}
+                        </td>
+                        <td>
+                            {humidity}
+                            %
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {t('preassure')}
+                        </td>
+                        <td>
+                            {preassure}
+                            hPA
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </StatisticSummary>
     );
 });

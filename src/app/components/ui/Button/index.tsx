@@ -1,11 +1,13 @@
 import { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
+import IconWrapper from 'app/components/ui/IconContainer';
 
 export const ButtonStyle = css`
-    display: inline-block;
+    display: inline-flex;
     text-align: center;
-    vertical-align: middle;
     justify-content: center;
+    align-items: center;
+    vertical-align: middle;
     padding: 8px 12px;
     background-color: var(--colors-active-background);
     color: var(--colors-font-main);
@@ -34,7 +36,7 @@ export const BaseButton = styled.button`
     ${ButtonStyle}
 `;
 
-const IconContainer = styled.span`
+const IconContainer = styled(IconWrapper)`
     display: inline-flex;
     vertical-align: inherit;
 `;
@@ -65,9 +67,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
         className={className}
         {...rest}
     >
-        {startIcon ? <IconContainerStart>{startIcon}</IconContainerStart> : null }
+        {startIcon ? <IconContainerStart size="xs">{startIcon}</IconContainerStart> : null }
         {children}
-        {endIcon ? <IconContainerEnd>{endIcon}</IconContainerEnd> : null }
+        {endIcon ? <IconContainerEnd size="xs">{endIcon}</IconContainerEnd> : null }
     </BaseButton>
 ));
 

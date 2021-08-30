@@ -1,5 +1,7 @@
 import { CurrentWeatherRequestParams, CurrentWeatherResponse } from './types/currentWeather';
-import { FindCityByQueryParams, FindCityByQueryResponse, FindCityByCoordsParams } from './types/findCityByQuery';
+import {
+    FindCityByQueryParams, FindCityByQueryResponse, FindCityByCoordsParams, CitySuggestWithTimeZone
+} from './types/findCityByQuery';
 import { ForecastWeatherResponse, ForecastWeatherRequestParams } from './types/forecastWeather';
 import { OneCallWeatherResponse, OneCallRequestParams, HistoryCallRequestParams } from './types/oneCallWeather';
 import weatherApiInstance from './WeatherApiInstance';
@@ -37,5 +39,5 @@ export const findCityByCityName = async (cityName: string) => {
         };
     }
 
-    return city;
+    return undefined;
 };

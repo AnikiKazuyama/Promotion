@@ -37,9 +37,13 @@ const WindTooltip: React.FC = () => {
                 isError={error}
                 isLoading={isLoading}
             >
-                <WindContainer>
-                    <Wind power={wind?.speed} deg={wind?.deg} />
-                </WindContainer>
+                {
+                    wind ? (
+                        <WindContainer>
+                            <Wind power={wind?.speed} deg={wind?.deg} />
+                        </WindContainer>
+                    ) : null
+                }
             </MouseMoveLoadableContentTooltip>
         </MouseMoveTooltip>
     );

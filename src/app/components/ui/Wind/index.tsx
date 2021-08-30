@@ -21,8 +21,6 @@ const StyledWind = styled.div<{vertical?: boolean}>`
     flex-direction: ${({ vertical }) => (vertical ? 'column' : 'row')};
     align-items: ${({ vertical }) => (vertical ? 'initial' : 'center')};
     justify-content: center;
-
-    ${({ vertical }) => (vertical ? '' : 'margin-left: 6px;')};
     
     ${StyledWindDirection} {
         ${({ vertical }) => (vertical ? '' : 'margin-left: 6px;')};
