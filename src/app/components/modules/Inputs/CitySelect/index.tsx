@@ -85,11 +85,12 @@ export const CitySelect = () => {
         value: null,
         getOptionLabel: (option) => option.name,
         getOptionValue: (option) => option.name,
+        noOptionsMessage: () => t('nothing not found'),
         loadOptions: debouncedLoadOptions,
         styles
     };
 
-    return <ARSelect {...props} />;
+    return <ARSelect theme={(theme) => ({ ...theme, colors: { ...theme.colors, primary: 'var(--colors-active-borders)' } })} {...props} />;
 };
 
 export default CitySelect;

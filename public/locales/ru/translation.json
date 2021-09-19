@@ -3,8 +3,8 @@
     "search by city": "Поиск по городу",
     "for number of days": "На {{count}} дней",
     "on map": "На карте",
-    "white": "Белый",
-    "black": "Черный",
+    "white": "Светлая",
+    "black": "Темная",
     "my location": "Мое местоположение",
     "temperature": "Температура",
     "participation": "Влажность",
@@ -25,5 +25,7 @@
     "SW": "ЮЗ",
     "S": "Ю",
     "SE": "ЮВ",
-    "map tooltip fetch error": "Возникла ошибка при загрузке данных"
+    "map tooltip fetch error": "Возникла ошибка при загрузке данных",
+    "detailed forecast": "Подробный прогноз",
+    "nothing not found": "Ничего не найдено"
 }

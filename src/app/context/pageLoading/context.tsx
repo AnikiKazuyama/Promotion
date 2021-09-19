@@ -6,8 +6,10 @@ const PageLoadingContext = createContext<PageLoadingStore | undefined>(undefined
 
 const PageLoadingProvider: React.FC = ({ children }) => {
     useEffect(() => {
-        const start = () => {
-            pageLoadingStore.setPageLoading(true);
+        const start = (_:string, { shallow }: {shallow: boolean}) => {
+            if (!shallow) {
+                pageLoadingStore.setPageLoading(true);
+            }
         };
         const end = () => {
             pageLoadingStore.setPageLoading(false);

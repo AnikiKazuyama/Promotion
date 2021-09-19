@@ -3,8 +3,8 @@
     "time now": "Now",
     "for number of days": "For {{count}} days",
     "on map": "On map",
-    "white": "White",
-    "black": "Black",
+    "white": "Light",
+    "black": "Dark",
     "my location": "My location",
     "temperature": "Temperature",
     "participation": "Participation",
@@ -24,5 +24,7 @@
     "W": "W",
     "SW": "SW",
     "S": "S",
-    "SE": "SE"
+    "SE": "SE",
+    "detailed forecast": "Detailed forecast",
+    "nothing not found": "Nothing not found"
 }

@@ -14,15 +14,13 @@ export default function useQueryParams(): [
     const [state, setState] = useState(() => router.query);
 
     const setQuery = (dataToSet: Record<string, string>) => {
-        const url = new URL(window.location.toString());
-        const urlParam = new URLSearchParams(url.search);
-
-        Object.entries(dataToSet).forEach(([key, value]) => {
-            urlParam.set(key, value.toString());
-        });
-
-        const newurl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?${urlParam.toString()}`;
-        window.history.pushState({ path: newurl }, '', newurl);
+        router.push({
+            pathname: router.basePath,
+            query: {
+                ...router.query,
+                ...dataToSet
+            }
+        }, undefined, { shallow: true });
         setState(dataToSet);
     };
 

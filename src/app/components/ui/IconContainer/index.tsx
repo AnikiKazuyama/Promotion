@@ -17,7 +17,7 @@ const SIZES = {
 
 export const IconContainer = styled.div<IconContainerProps>`
     display: inline-block;
-    vertical-align: inherit;
+    vertical-align: middle;
     width: ${({ size }) => {
         if (!size) {
             return SIZES.m;

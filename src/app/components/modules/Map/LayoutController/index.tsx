@@ -2,6 +2,7 @@ import StyeldButtonGroup from 'app/components/ui/ButtonGroup';
 import ToggleButton from 'app/components/ui/ToggleButton';
 import { Layer, layerGroup, Map } from 'leaflet';
 import { ChangeEventHandler, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 const StyledMapLayoutController = styled(StyeldButtonGroup)`
@@ -23,6 +24,7 @@ type MapLayoutControllerProps = {
 
 const MapLayoutController: React.FC<MapLayoutControllerProps> = ({ map, layers, onChange }) => {
     const tileGroupRef = useRef(layerGroup());
+    const { t } = useTranslation();
 
     useEffect(() => {
         const layerNames = Object.keys(layers);
@@ -69,7 +71,7 @@ const MapLayoutController: React.FC<MapLayoutControllerProps> = ({ map, layers, 
                         defaultChecked={index === 0}
                         key={layer.title}
                     >
-                        {layer.title}
+                        {t(layer.title)}
                     </ToggleButton>
                 ))}
             </StyeldButtonGroup>

@@ -1,19 +1,23 @@
 import { Popup as LeafletPopup } from 'leaflet';
-import { useRef } from 'react';
+import {
+    forwardRef,
+    MutableRefObject,
+    PropsWithChildren
+} from 'react';
 import { Popup, useMap } from 'react-leaflet';
+import { useEnsuredForwardedRef } from 'react-use';
 import styled from 'styled-components';
 
 const StyledMarkerPopup = styled(Popup)`
     & {
         min-width: 239px;
         background-color: transparent;
-        z-index: 402;
+        z-index: 1002;
     }
 
     & .leaflet-popup-content-wrapper {
         background: #fff;
         border-radius: 12px;
-        /* position: relative; */
         color: #222426;
         font-size: 14px;
         -webkit-box-shadow: 0 2px 6px 0 rgb(0 0 0 / 20%);
@@ -55,8 +59,17 @@ const MarkerPopupCloseButton = styled.div`
     cursor: pointer;
 `;
 
-const MarkerPopup: React.FC = ({ children }) => {
-    const popupRef = useRef<LeafletPopup | null>(null);
+export type MarkerPopupProps = PropsWithChildren<{
+    onOpen?: () => void
+    onClose?: () => void
+}>
+
+const MarkerPopup = forwardRef<LeafletPopup | null, MarkerPopupProps>(({
+    children,
+    onOpen,
+    onClose
+}, ref) => {
+    const popupRef = useEnsuredForwardedRef(ref as MutableRefObject<LeafletPopup | null>);
     const map = useMap();
 
     const handleCloseClick = () => {
@@ -64,11 +77,11 @@ const MarkerPopup: React.FC = ({ children }) => {
     };
 
     return (
-        <StyledMarkerPopup closeButton={false} ref={popupRef}>
+        <StyledMarkerPopup ref={popupRef} closeButton={false} onClose={onClose} onOpen={onOpen}>
             <MarkerPopupCloseButton onClick={handleCloseClick} />
             {children}
         </StyledMarkerPopup>
     );
-};
+});
 
 export default MarkerPopup;

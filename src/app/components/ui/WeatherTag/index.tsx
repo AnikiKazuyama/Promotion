@@ -59,4 +59,5 @@ export const WeatherTag = forwardRef<HTMLDivElement, WeatherTag>(({
         </StyledWeatherTag>
     );
 });
+
 export default WeatherTag;

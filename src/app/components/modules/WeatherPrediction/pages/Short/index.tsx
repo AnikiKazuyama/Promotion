@@ -1,6 +1,5 @@
 import Button from 'app/components/ui/Button';
 import StyeldButtonGroup from 'app/components/ui/ButtonGroup';
-import IconContainer from 'app/components/ui/IconContainer';
 import LeftChevron from 'app/components/ui/Icons/LeftChevron';
 import RightChevron from 'app/components/ui/Icons/RightChevron';
 import { useState, useRef } from 'react';
