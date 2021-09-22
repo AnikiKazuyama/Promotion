@@ -9,7 +9,7 @@ import { useMap } from 'react-leaflet';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import useMapStateFromQuery from '../queryManager';
+import useMapStateFromQuery from 'app/components/modules/Map/queryManager';
 import ClickMarker from './Marker';
 
 type TemperatureMarkerState = {
