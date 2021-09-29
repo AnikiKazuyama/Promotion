@@ -87,7 +87,7 @@ export const Header = observer(() => {
     return (
         <>
             <StyledHeader>
-                <Link href="/weather">
+                <Link href="/">
                     <TitleWLogo>
                         <Title>Aniki</Title>
                         <Logo>Weather</Logo>
@@ -97,8 +97,8 @@ export const Header = observer(() => {
                     <CitySearch />
                 </SearchBlock>
                 <Categories>
-                    <ActiveLink href={`/weather/${query.city}`}><CategoryItem>{t('for number of days', { count: 5 })}</CategoryItem></ActiveLink>
-                    <ActiveLink href={`/weather/map/${query.city}`}><CategoryItem>{t('on map')}</CategoryItem></ActiveLink>
+                    <ActiveLink href={`/${query.city}`}><CategoryItem>{t('for number of days', { count: 5 })}</CategoryItem></ActiveLink>
+                    <ActiveLink href={`/map/${query.city}`}><CategoryItem>{t('on map')}</CategoryItem></ActiveLink>
                 </Categories>
                 <ThemeToggle />
             </StyledHeader>

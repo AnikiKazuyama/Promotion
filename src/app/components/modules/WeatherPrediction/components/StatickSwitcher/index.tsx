@@ -26,9 +26,9 @@ const StaticSwitcher = () => {
 
     return (
         <Wrapper>
-            <ActiveLink href={`/weather/${query.city}`}><Tab>{t('short')}</Tab></ActiveLink>
+            <ActiveLink href={`/${query.city}`}><Tab>{t('short')}</Tab></ActiveLink>
             <TabsListDivider />
-            <ActiveLink href={`/weather/full/${query.city}`}><Tab>{t('full')}</Tab></ActiveLink>
+            <ActiveLink href={`/full/${query.city}`}><Tab>{t('full')}</Tab></ActiveLink>
         </Wrapper>
     );
 };

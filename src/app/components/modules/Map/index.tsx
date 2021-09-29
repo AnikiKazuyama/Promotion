@@ -52,7 +52,9 @@ const Map = () => {
                     center={query.center}
                     zoom={query.zoom}
                     minZoom={3}
+                    zoomControl={false}
                     preferCanvas
+                    worldCopyJump
                 >
                     <TileLayer
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

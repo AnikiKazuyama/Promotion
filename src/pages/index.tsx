@@ -1,24 +1,7 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import styles from 'styles/Home.module.css';
+import getServerSidePropsForIndexPages from 'app/common/ssr';
+import BlankPage from 'app/components/modules/BlankPage';
+import { GetServerSideProps } from 'next';
 
-/**
- *
- * @returns
- */
-export default function Home(): JSX.Element {
-    return (
-        <div className={styles.container}>
-            <Head>
-                <title>Aniki aka &#34;Ichi&#34; promotion project</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+export const getServerSideProps: GetServerSideProps = (ssrProps) => getServerSidePropsForIndexPages('', '/san-antonio')(ssrProps);
 
-            <main className={styles.main}>
-                <Link href="/weather">
-                    <p>Weather app</p>
-                </Link>
-            </main>
-        </div>
-    );
-}
+export default BlankPage;

@@ -18,7 +18,7 @@ export const ButtonStyle = css`
 
     &:hover {
         cursor: pointer;
-        background: #f5f5f5;
+        background: var(--colors-main-background-darken);
     }
 
     &:focus {

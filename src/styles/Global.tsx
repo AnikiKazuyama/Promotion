@@ -46,6 +46,7 @@ const globalStyles = css`
 body[data-theme='light'] {
     --colors-header-background: var(--color-light-gray);
     --colors-main-background: var(--color-gray);
+    --colors-main-background-darken: #e4e4e4;
     --colors-active-background: var(--color-white);
     --colors-divider: var(--color-inknown-gray);
     --colors-not-active-background: var(--color-light-gray);
@@ -62,11 +63,14 @@ body[data-theme='light'] {
     --colors-sun: var(--color-yellow);
     --colors-toggle-slider: var(--color-dark-gray);
     --colors-active-borders: var(--color-yellow);
+    --colors-layout-toggle-bg: var(--color-yellow);
+    --colors-layout-toggle-color: var(--color-white);
 }
 
 body[data-theme='dark'] {
     --colors-header-background: #1a1e29;
     --colors-main-background: #283345;
+    --colors-main-background-darken: #1c222b;
     --colors-active-background: linear-gradient(#617492, #b1b0b6);
     --colors-not-active-background: linear-gradient(#707c96, #818086);
     --colors-chart-dots-rounds: var(--color-white);
@@ -82,6 +86,8 @@ body[data-theme='dark'] {
     --colors-sun: var(--color-white);
     --colors-toggle-slider: #b0bac4;
     --colors-active-borders: var(--color-white);
+    --colors-layout-toggle-bg: var(--color-white);
+    --colors-layout-toggle-color: var(--color-blue-dark);
 }
 
 .body {

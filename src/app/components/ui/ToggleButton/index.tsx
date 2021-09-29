@@ -19,8 +19,21 @@ const StyledHiddenInput = styled.input`
 `;
 
 const StyledToggleButton = styled(BaseButton)<{checked?: boolean}>`
+    color: var(--color-black);
+    background-color: var(--color-white);
+
+    &:hover {
+        color: var(--color-white);
+    }
+
     && {
-        ${({ checked }) => (checked ? 'background-color: var(--colors-active-borders)' : '')}
+        ${({ checked }) => (
+        checked
+            ? `
+                background-color: var(--color-yellow);
+                color: var(--colors-layout-toggle-color)
+            `
+            : '')}
     }
 `;
 

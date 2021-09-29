@@ -1,5 +1,5 @@
 import hasOwnPropery from 'app/utils/object';
-import BlankPage from 'pages/weather';
+import BlankPage from 'pages';
 import TemperatureTooltip from './Temperature';
 import WindTooltip from './Wind';
 

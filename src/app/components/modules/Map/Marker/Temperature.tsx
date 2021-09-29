@@ -5,11 +5,10 @@ import getWeatherIconByWeatherCode from 'app/utils/icon';
 import { LatLng } from 'leaflet';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useMap } from 'react-leaflet';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import useMapStateFromQuery from 'app/components/modules/Map/queryManager';
+import { useLocation } from 'app/context/location';
 import ClickMarker from './Marker';
 
 type TemperatureMarkerState = {
@@ -57,11 +56,10 @@ const TemperatureMarker: React.FC = () => {
         weather: null,
         error: false
     });
-    const map = useMap();
-    const { center } = useMapStateFromQuery(map);
     const [isOpen, setIsOpen] = useState(false);
     const { t } = useTranslation();
     const { query } = useRouter();
+    const locationStore = useLocation();
 
     const fetchWeather = async (latlng: LatLng | undefined) => {
         setIsOpen(true);
@@ -100,7 +98,7 @@ const TemperatureMarker: React.FC = () => {
     return (
         <ClickMarker
             open={isOpen}
-            initialPosition={center}
+            initialPosition={locationStore.getLocation().coordinates}
             onOpenPopup={fetchWeather}
             onClosePopup={clear}
         >
@@ -151,7 +149,7 @@ const TemperatureMarker: React.FC = () => {
                         </WeatherTable>
                         <Link
                             href={{
-                                pathname: '/weather',
+                                pathname: '/',
                                 query: {
                                     mlng: query.mlng,
                                     mlat: query.mlat
