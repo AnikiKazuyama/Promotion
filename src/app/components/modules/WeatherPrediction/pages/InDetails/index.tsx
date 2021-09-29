@@ -16,6 +16,10 @@ const FullContainer = styled(animated(BlurBgPaper))`
     margin-left: 40px;
     margin-right: 40px;
 
+    &:last-child {
+        margin-bottom: 40px
+    }
+
     @media ${device.laptop} {
         flex-direction: row;
         /* max-width: ${size.laptop}; */
