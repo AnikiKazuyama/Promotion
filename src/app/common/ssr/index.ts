@@ -17,6 +17,15 @@ const getServerSidePropsForIndexPages = (
     const addressLookup = req.socket.address() as Partial<AddressInfo>;
     const geoLookup = geoip.lookup(addressLookup.address || '');
 
+    if (addressLookup && addressLookup.address && geoLookup) {
+        return {
+            redirect: {
+                destination: `/${geoLookup.city.toLowerCase().replace(' ', '-')}`,
+                permanent: true
+            }
+        };
+    }
+
     if (query.mlat && query.mlng) {
         const city = await findCityByCityCoords({
             lat: Number(query.mlat),
@@ -35,15 +44,6 @@ const getServerSidePropsForIndexPages = (
         return {
             redirect: {
                 destination: redirectToDefault,
-                permanent: true
-            }
-        };
-    }
-
-    if (addressLookup && addressLookup.address && geoLookup) {
-        return {
-            redirect: {
-                destination: `${redirectToUrl}/${geoLookup.city.toLowerCase().replace(' ', '-')}`,
                 permanent: true
             }
         };
