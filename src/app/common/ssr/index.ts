@@ -16,6 +16,7 @@ const getServerSidePropsForIndexPages = (
 ): GetServerSideProps => async ({ req, query }) => {
     const addressLookup = req.socket.address() as Partial<AddressInfo>;
     const geoLookup = geoip.lookup(addressLookup.address || '');
+    console.log(req);
     console.log(addressLookup);
     console.log(geoLookup);
     if (addressLookup && addressLookup.address && geoLookup) {
