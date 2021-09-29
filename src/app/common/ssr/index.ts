@@ -14,12 +14,12 @@ const getServerSidePropsForIndexPages = (
     redirectToUrl: string,
     redirectToDefault: string
 ): GetServerSideProps => async ({ req, query }) => {
-    const addressLookup = req.socket.address() as Partial<AddressInfo>;
-    const geoLookup = geoip.lookup(addressLookup.address || '');
-    console.log(req);
-    console.log(addressLookup);
-    console.log(geoLookup);
-    if (addressLookup && addressLookup.address && geoLookup) {
+    const forwarderFor = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '';
+    const ip = Array.isArray(forwarderFor) ? forwarderFor[0] : forwarderFor?.split(',')[0].trim();
+
+    const geoLookup = geoip.lookup(ip);
+
+    if (geoLookup) {
         return {
             redirect: {
                 destination: `/${geoLookup.city.toLowerCase().replace(' ', '-')}`,
