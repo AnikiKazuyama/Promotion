@@ -8,6 +8,7 @@ import Styles from 'styles';
 import i18n, { useChangeTranslation } from 'app/utils/translation';
 import { I18nextProvider } from 'react-i18next';
 import 'dayjs/locale/ru';
+import { Head } from 'next/document';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -19,6 +20,14 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     useChangeTranslation();
     return (
         <>
+            <Head>
+                <title>Aniki.Погода</title>
+                <meta property="og:title" content="Прогноз погоды" />
+                <meta property="og:description" content="Приложение предоставляющее информацию о прогнозе погоды" />
+                <meta property="og:image" content="/static/images/og_image.jpg" />
+                <meta property="og:image:type" content="image/jpg" />
+                <meta property="og:site_name" content="Aniki.Погода" />
+            </Head>
             <Styles />
             <I18nextProvider i18n={i18n}>
                 <PageLoadingProvider>
