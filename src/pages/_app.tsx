@@ -8,7 +8,7 @@ import Styles from 'styles';
 import i18n, { useChangeTranslation } from 'app/utils/translation';
 import { I18nextProvider } from 'react-i18next';
 import 'dayjs/locale/ru';
-import { Head } from 'next/document';
+import Head from 'next/head';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
